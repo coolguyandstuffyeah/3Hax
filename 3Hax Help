@@ -10,4 +10,4 @@ Anything you wanna upgrade and tell me to upgrade my discord is epic122122123#04
 
 Code:
 
-loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/coolguyandstuffyeah/coolguyandstuffyeah/refs/heads/main/3Hax"))()
+loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/coolguyandstuffyeah/3Hax/refs/heads/main/3Hax"))()
