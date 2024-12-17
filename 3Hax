@@ -1,0 +1,2875 @@
+if game.CoreGui:FindFirstChild("3Hax") then
+	
+	game.TweenService:Create(game.CoreGui:FindFirstChild("3Hax").Menu,TweenInfo.new(0.5),{BackgroundTransparency = 1,Position = UDim2.new(0,0,0.962,0)}):Play()
+	game.TweenService:Create(game.CoreGui:FindFirstChild("3Hax").Menu.Toggle,TweenInfo.new(0.5),{Position = UDim2.new(0.475, 0, 0.5, 0)}):Play()
+	game.TweenService:Create(game.CoreGui:FindFirstChild("3Hax").Menu.Toggle.Icon,TweenInfo.new(0.5),{ImageTransparency = 1}):Play()
+	
+	wait(0.5)
+	
+	game.CoreGui:FindFirstChild("3Hax"):Destroy()
+	
+end
+
+local Admin = Instance.new("ScreenGui", game.CoreGui)
+
+Admin.DisplayOrder = 1999999999
+Admin.IgnoreGuiInset = true
+Admin.Name = "3Hax"
+Admin.ResetOnSpawn = false
+
+local Main = Instance.new("Frame", Admin)
+
+Main.BackgroundColor3 = Color3.new(0, 0, 0)
+Main.BackgroundTransparency = 1
+Main.BorderColor3 = Color3.new(1, 1, 1)
+Main.BorderSizePixel = 0
+Main.Name = "Menu"
+Main.Position = UDim2.new(0, 0, 0.962, 0)
+Main.Size = UDim2.new(1, 0, 0.15, 0)
+
+local Gradient = Instance.new("UIGradient", Main)
+
+Gradient.Transparency = NumberSequence.new({NumberSequenceKeypoint.new(0,0,0),NumberSequenceKeypoint.new(0.8,0,0),NumberSequenceKeypoint.new(1,1,0)})
+Gradient.Rotation = -90
+
+local Toggle = Instance.new("ImageButton", Main)
+
+Toggle.BackgroundColor3 = Color3.new(0.105882, 0.105882, 0.105882)
+Toggle.Name = "Toggle"
+Toggle.Active = false
+Toggle.Position = UDim2.new(0.475, 0, 0.5, 0)
+Toggle.Rotation = 0
+Toggle.BackgroundTransparency = 1
+Toggle.Size = UDim2.new(0.05, 0, 0.45, 0)
+
+local Icon = Instance.new("ImageLabel", Toggle)
+
+Icon.BackgroundColor3 = Color3.new(1, 1, 1)
+Icon.BackgroundTransparency = 1
+Icon.BorderColor3 = Color3.new(0, 0, 0)
+Icon.BorderSizePixel = 0
+Icon.Image = "rbxassetid://878102417"
+Icon.Name = "Icon"
+Icon.Active = false
+Icon.Position = UDim2.new(0, 0, -0.0500000007, 0)
+Icon.Rotation = 180
+Icon.ScaleType = Enum.ScaleType.Fit
+Icon.Size = UDim2.new(1, 0, 1, 0)
+Icon.ZIndex = 2
+
+local Scroll = Instance.new("ScrollingFrame", Main)
+
+Scroll.Active = true
+Scroll.BackgroundColor3 = Color3.new(1, 1, 1)
+Scroll.BackgroundTransparency = 1
+Scroll.BorderColor3 = Color3.new(0, 0, 0)
+Scroll.BorderSizePixel = 0
+Scroll.CanvasSize = UDim2.new(1, 0, 0, 0)
+Scroll.Name = "Scroll"
+Scroll.AutomaticCanvasSize = Enum.AutomaticSize.XY
+Scroll.Position = UDim2.new(0.00499999989, 0, 0.2, 0)
+Scroll.ScrollBarImageTransparency = 0.4000000059604645
+Scroll.ScrollBarThickness = 0
+Scroll.Size = UDim2.new(1, 0, 0.8, 0)
+Scroll.ZIndex = 4
+Scroll.ClipsDescendants = false
+
+local Select = Instance.new("ImageButton", nil)
+
+Select.BackgroundColor3 = Color3.new(1, 1, 1)
+Select.BorderColor3 = Color3.new(0, 0, 0)
+Select.BorderSizePixel = 0
+Select.AutoButtonColor = false
+Select.ImageTransparency = 0.6000000238418579
+Select.Name = "Select"
+Select.Transparency = 1
+Select.Position = UDim2.new(0.00899999961, 0, 0.112000003, 0)
+Select.ScaleType = Enum.ScaleType.Fit
+Select.Size = UDim2.new(0.177000001, 0, 0.6, 0)
+Select.SliceCenter = Rect.new(125, 125, 206, 317)
+Select.ZIndex = 6
+
+local Round = Instance.new("UICorner", Select)
+
+
+local Option = Instance.new("TextLabel", Select)
+
+Option.BackgroundColor3 = Color3.new(1, 1, 1)
+Option.BackgroundTransparency = 1
+Option.BorderColor3 = Color3.new(0, 0, 0)
+Option.BorderSizePixel = 0
+Option.Font = Enum.Font.Code
+Option.Name = "Option"
+Option.Size = UDim2.new(1, 0, 0.729693651, 0)
+Option.Text = "Command"
+Option.TextColor3 = Color3.new(1, 1, 1)
+Option.TextScaled = true
+Option.TextSize = 14
+Option.TextStrokeColor3 = Color3.new(0.427451, 0.427451, 0.427451)
+Option.TextStrokeTransparency = 0
+Option.TextWrapped = true
+Option.ZIndex = 6
+
+local CommandName = Instance.new("TextLabel", Select)
+
+CommandName.BackgroundColor3 = Color3.new(1, 1, 1)
+CommandName.BackgroundTransparency = 1
+CommandName.BorderColor3 = Color3.new(0, 0, 0)
+CommandName.BorderSizePixel = 0
+CommandName.Font = Enum.Font.Code
+CommandName.Name = "CommandName"
+CommandName.Position = UDim2.new(0, 0, 0.729693592, 0)
+CommandName.Size = UDim2.new(1, 0, 0.261318862, 0)
+CommandName.Text = "Name"
+CommandName.TextColor3 = Color3.new(1, 1, 1)
+CommandName.TextScaled = true
+CommandName.TextSize = 14
+CommandName.TextStrokeColor3 = Color3.new(0.427451, 0.427451, 0.427451)
+CommandName.TextStrokeTransparency = 0
+CommandName.TextWrapped = true
+CommandName.ZIndex = 6
+
+local List = Instance.new("UIListLayout", Scroll)
+
+List.FillDirection = Enum.FillDirection.Horizontal
+List.Name = "List"
+List.Padding = UDim.new(0.00999999978, 0)
+List.SortOrder = Enum.SortOrder.LayoutOrder
+List.VerticalAlignment = Enum.VerticalAlignment.Center
+
+local Metre = Instance.new("ImageButton", nil)
+
+Metre.AutoButtonColor = false
+Metre.BackgroundColor3 = Color3.new(0.329412, 0.329412, 0.329412)
+Metre.BorderColor3 = Color3.new(0, 0, 0)
+Metre.BorderSizePixel = 0
+Metre.Transparency = 1
+Metre.Name = "Metre"
+Metre.Position = UDim2.new(0.00899999961, 0, 0.112000003, 0)
+Metre.ScaleType = Enum.ScaleType.Fit
+Metre.Size = UDim2.new(0.177000001, 0, 0.6, 0)
+Metre.SliceCenter = Rect.new(125, 125, 206, 317)
+Metre.ZIndex = 6
+
+local Round = Instance.new("UICorner", Metre)
+
+local CommandName = Instance.new("TextLabel", Metre)
+
+CommandName.BackgroundColor3 = Color3.new(1, 1, 1)
+CommandName.BackgroundTransparency = 1
+CommandName.BorderColor3 = Color3.new(0, 0, 0)
+CommandName.BorderSizePixel = 0
+CommandName.Font = Enum.Font.Code
+CommandName.Name = "CommandName"
+CommandName.Size = UDim2.new(1, 0, 0.729693592, 0)
+CommandName.Text = "Name"
+CommandName.TextColor3 = Color3.new(1, 1, 1)
+CommandName.TextScaled = true
+CommandName.TextSize = 14
+CommandName.TextStrokeColor3 = Color3.new(0.427451, 0.427451, 0.427451)
+CommandName.TextStrokeTransparency = 0
+CommandName.TextWrapped = true
+CommandName.ZIndex = 6
+
+local Bar = Instance.new("Frame", Metre)
+
+Bar.BackgroundColor3 = Color3.new(1, 1, 1)
+Bar.BackgroundTransparency = 0.5
+Bar.BorderColor3 = Color3.new(0, 0, 0)
+Bar.BorderSizePixel = 0
+Bar.Name = "Bar"
+Bar.Size = UDim2.new(0, 0, 1, 0)
+Bar.ZIndex = 6
+
+local Round = Instance.new("UICorner", Bar)
+
+local Editor = Instance.new("TextBox", Metre)
+
+Editor.BackgroundColor3 = Color3.new(1, 1, 1)
+Editor.BackgroundTransparency = 1
+Editor.BorderColor3 = Color3.new(0, 0, 0)
+Editor.BorderSizePixel = 0
+Editor.ClearTextOnFocus = false
+Editor.Font = Enum.Font.Code
+Editor.Name = "Editor"
+Editor.Position = UDim2.new(0, 0, 0.729689896, 0)
+Editor.Size = UDim2.new(1, 0, 0.27030769, 0)
+Editor.Text = "0"
+Editor.TextColor3 = Color3.new(1, 1, 1)
+Editor.TextScaled = true
+Editor.TextSize = 14
+Editor.TextStrokeColor3 = Color3.new(0.352941, 0.352941, 0.352941)
+Editor.TextStrokeTransparency = 0
+Editor.TextWrapped = true
+Editor.ZIndex = 6
+
+local ToggleButton = Instance.new("ImageButton", nil)
+
+ToggleButton.AutoButtonColor = false
+ToggleButton.BackgroundColor3 = Color3.new(1, 1, 1)
+ToggleButton.BorderColor3 = Color3.new(0, 0, 0)
+ToggleButton.BorderSizePixel = 0
+ToggleButton.Name = "Toggle"
+ToggleButton.BackgroundTransparency = 1
+ToggleButton.Position = UDim2.new(0.00899999961, 0, 0.112000003, 0)
+ToggleButton.ScaleType = Enum.ScaleType.Fit
+ToggleButton.Size = UDim2.new(0.177000001, 0, 0.6, 0)
+ToggleButton.SliceCenter = Rect.new(125, 125, 206, 317)
+ToggleButton.ZIndex = 6
+
+local Round = Instance.new("UICorner", ToggleButton)
+
+local CommandName = Instance.new("TextLabel", ToggleButton)
+
+CommandName.BackgroundColor3 = Color3.new(1, 1, 1)
+CommandName.BackgroundTransparency = 1
+CommandName.BorderColor3 = Color3.new(0, 0, 0)
+CommandName.BorderSizePixel = 0
+CommandName.Font = Enum.Font.Code
+CommandName.Name = "CommandName"
+CommandName.Size = UDim2.new(1, 0, 0.991012454, 0)
+CommandName.Text = "Name"
+CommandName.TextColor3 = Color3.new(1, 1, 1)
+CommandName.TextScaled = true
+CommandName.TextSize = 14
+CommandName.TextStrokeColor3 = Color3.new(0.427451, 0.427451, 0.427451)
+CommandName.TextStrokeTransparency = 0
+CommandName.TextWrapped = true
+CommandName.ZIndex = 6
+
+local Bar = Instance.new("Frame", ToggleButton)
+
+Bar.BackgroundColor3 = Color3.new(1, 1, 1)
+Bar.BackgroundTransparency = 0.800000011920929
+Bar.BorderColor3 = Color3.new(0, 0, 0)
+Bar.BorderSizePixel = 0
+Bar.Name = "Bar"
+Bar.Size = UDim2.new(0, 0, 1, 0)
+Bar.ZIndex = 6
+
+local Split = Instance.new("Frame", nil)
+
+Split.BackgroundColor3 = Color3.new(1, 1, 1)
+Split.BackgroundTransparency = 1
+Split.BorderColor3 = Color3.new(0, 0, 0)
+Split.BorderSizePixel = 0
+Split.Name = "Split"
+Split.Position = UDim2.new(0.561000049, 0, 0.222500011, 0)
+Split.Size = UDim2.new(0.0168428309, 0, 0.555000067, 0)
+Split.ZIndex = 6
+
+local Split2 = Instance.new("Frame", Split)
+
+Split2.BackgroundColor3 = Color3.new(1, 1, 1)
+Split2.BackgroundTransparency = 0.5
+Split2.BorderColor3 = Color3.new(0, 0, 0)
+Split2.BorderSizePixel = 0
+Split2.Position = UDim2.new(0.5, 0, 0, 0)
+Split2.Size = UDim2.new(0.0500000007, 0, 1, 0)
+Split2.ZIndex = 6
+
+local Round = Instance.new("UICorner", Split)
+
+
+local Button = Instance.new("ImageButton", nil)
+
+Button.BackgroundColor3 = Color3.new(0.854902, 0.854902, 0.854902)
+Button.BorderColor3 = Color3.new(0, 0, 0)
+Button.BorderSizePixel = 0
+Button.ImageTransparency = 0.6000000238418579
+Button.Name = "Button"
+Button.ClipsDescendants = true
+Button.AutoButtonColor = false
+Button.Position = UDim2.new(0, 0, 0, 0)
+Button.Transparency = 1
+Button.ScaleType = Enum.ScaleType.Fit
+Button.Size = UDim2.new(0.177000001, 0, 0.6, 0)
+Button.SliceCenter = Rect.new(125, 125, 206, 317)
+Button.ZIndex = 6
+
+local CommandName = Instance.new("TextLabel", Button)
+
+CommandName.BackgroundColor3 = Color3.new(1, 1, 1)
+CommandName.BackgroundTransparency = 1
+CommandName.BorderColor3 = Color3.new(0, 0, 0)
+CommandName.BorderSizePixel = 0
+CommandName.Font = Enum.Font.Code
+CommandName.Name = "CommandName"
+CommandName.Size = UDim2.new(1, 0, 0.991012454, 0)
+CommandName.Text = "Name"
+CommandName.TextColor3 = Color3.new(1, 1, 1)
+CommandName.TextScaled = true
+CommandName.TextSize = 14
+CommandName.TextStrokeColor3 = Color3.new(0.427451, 0.427451, 0.427451)
+CommandName.TextStrokeTransparency = 0
+CommandName.TextWrapped = true
+CommandName.ZIndex = 6
+
+local Round = Instance.new("UICorner", Button)
+
+local Description = Instance.new("Frame", Admin)
+
+Description.BackgroundColor3 = Color3.new(0, 0, 0)
+Description.BorderColor3 = Color3.new(0, 0, 0)
+Description.BorderSizePixel = 0
+Description.Name = "Description"
+Description.Position = UDim2.new(0.173124522, 0, 0.189189181, 0)
+Description.Size = UDim2.new(0.19223541, 0, 0.205433846, 0)
+Description.Visible = false
+Description.ZIndex = 9
+Description.Transparency = 0.4
+
+local Round = Instance.new("UICorner",Description)
+
+local Stroke = Instance.new("UIStroke",Description)
+
+Stroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+
+Stroke.Color = Color3.new(1,1,1)
+
+Stroke.Thickness = 3
+
+local Desc = Instance.new("TextLabel", Description)
+
+Desc.BackgroundColor3 = Color3.new(1, 1, 1)
+Desc.BackgroundTransparency = 1
+Desc.BorderColor3 = Color3.new(0, 0, 0)
+Desc.BorderSizePixel = 0
+Desc.Font = Enum.Font.Code
+Desc.Name = "Desc"
+Desc.Size = UDim2.new(1, 0, 1, 0)
+Desc.Text = "Text Here"
+Desc.TextColor3 = Color3.new(1, 1, 1)
+Desc.TextScaled = true
+Desc.TextSize = 14
+Desc.TextStrokeTransparency = 0.5
+Desc.TextWrapped = true
+Desc.TextXAlignment = Enum.TextXAlignment.Left
+Desc.ZIndex = 10
+
+local PlayerEdit = Instance.new("Frame", Admin)
+
+PlayerEdit.BackgroundColor3 = Color3.new(0.113725, 0.113725, 0.113725)
+PlayerEdit.BorderColor3 = Color3.new(0, 0, 0)
+PlayerEdit.BorderSizePixel = 0
+PlayerEdit.Name = "PlayerEdit"
+PlayerEdit.Position = UDim2.new(0.138883978, 0, 0.324086577, 0)
+PlayerEdit.Size = UDim2.new(0.19223541, 0, 0.349758595, 0)
+PlayerEdit.Visible = false
+PlayerEdit.ZIndex = 9
+
+local Title = Instance.new("TextLabel", PlayerEdit)
+
+Title.BackgroundColor3 = Color3.new(1, 1, 1)
+Title.BackgroundTransparency = 1
+Title.BorderColor3 = Color3.new(0, 0, 0)
+Title.BorderSizePixel = 0
+Title.Font = Enum.Font.Code
+Title.Name = "Title"
+Title.Position = UDim2.new(-0.00456712488, 0, 0.0293457545, 0)
+Title.Size = UDim2.new(1, 0, 0.0900000036, 0)
+Title.Text = "Player"
+Title.TextColor3 = Color3.new(1, 1, 1)
+Title.TextScaled = true
+Title.TextSize = 14
+Title.TextStrokeTransparency = 0.5
+Title.TextWrapped = true
+Title.ZIndex = 10
+
+local Round = Instance.new("UICorner", PlayerEdit)
+
+local Close = Instance.new("TextButton", PlayerEdit)
+
+Close.BackgroundColor3 = Color3.new(0.317647, 0.317647, 0.317647)
+Close.BorderColor3 = Color3.new(0, 0, 0)
+Close.BorderSizePixel = 0
+Close.Font = Enum.Font.Code
+Close.Name = "Close"
+Close.Position = UDim2.new(0.162525207, 0, 0.834292173, 0)
+Close.Size = UDim2.new(0.669987381, 0, 0.120430999, 0)
+Close.Text = "Close"
+Close.TextColor3 = Color3.new(1, 1, 1)
+Close.TextScaled = true
+Close.TextSize = 14
+Close.TextWrapped = true
+Close.ZIndex = 10
+
+local Round = Instance.new("UICorner", Close)
+
+local Scroll2 = Instance.new("ScrollingFrame", PlayerEdit)
+
+Scroll2.Active = true
+Scroll2.BackgroundColor3 = Color3.new(1, 1, 1)
+Scroll2.BorderColor3 = Color3.new(0, 0, 0)
+Scroll2.BorderSizePixel = 0
+Scroll2.CanvasSize = UDim2.new(0, 0, 1, 0)
+Scroll2.Name = "Scroll"
+Scroll2.Position = UDim2.new(0, 0, 0.150921017, 0)
+Scroll2.ScrollingDirection = Enum.ScrollingDirection.Y
+Scroll2.Size = UDim2.new(0.99999994, 0, 0.652043104, 0)
+
+local List = Instance.new("UIListLayout", Scroll2)
+
+List.HorizontalAlignment = Enum.HorizontalAlignment.Center
+List.Name = "List"
+List.Padding = UDim.new(0.0500000007, 0)
+List.SortOrder = Enum.SortOrder.LayoutOrder
+
+local CustomPlayerButton = Instance.new("TextButton", Scroll2)
+
+CustomPlayerButton.BackgroundColor3 = Color3.new(0.317647, 0.317647, 0.317647)
+CustomPlayerButton.BorderColor3 = Color3.new(0, 0, 0)
+CustomPlayerButton.BorderSizePixel = 0
+CustomPlayerButton.Font = Enum.Font.Code
+CustomPlayerButton.Name = "Button"
+CustomPlayerButton.Position = UDim2.new(0.208394051, 0, -9.81049624e-08, 0)
+CustomPlayerButton.Size = UDim2.new(0.583211899, 0, 0.139801741, 0)
+CustomPlayerButton.Text = "Button"
+CustomPlayerButton.TextColor3 = Color3.new(1, 1, 1)
+CustomPlayerButton.TextScaled = true
+CustomPlayerButton.TextSize = 14
+CustomPlayerButton.TextWrapped = true
+CustomPlayerButton.ZIndex = 10
+
+local Round = Instance.new("UICorner", CustomPlayerButton)
+
+local Popup = Instance.new("Frame", Admin)
+
+Popup.BackgroundColor3 = Color3.new(0.113725, 0.113725, 0.113725)
+Popup.BorderColor3 = Color3.new(0, 0, 0)
+Popup.BorderSizePixel = 0
+Popup.ClipsDescendants = true
+Popup.Name = "Popup"
+Popup.Position = UDim2.new(0.34523809, 0, 0.355205268, 0)
+Popup.Size = UDim2.new(0.309523821, 0, 0.293181807, 0)
+Popup.Visible = false
+Popup.ZIndex = 5
+
+local Round = Instance.new("UICorner", Popup)
+
+local Top = Instance.new("Frame", Popup)
+
+Top.BackgroundColor3 = Color3.new(0.258824, 0.258824, 0.258824)
+Top.BorderColor3 = Color3.new(0, 0, 0)
+Top.BorderSizePixel = 0
+Top.Name = "Top"
+Top.Size = UDim2.new(1, 0, 0.119999997, 0)
+Top.ZIndex = 6
+
+local Round = Instance.new("UICorner", Top)
+
+local Title = Instance.new("TextLabel", Top)
+
+Title.BackgroundColor3 = Color3.new(1, 1, 1)
+Title.BackgroundTransparency = 1
+Title.BorderColor3 = Color3.new(0, 0, 0)
+Title.BorderSizePixel = 0
+Title.Font = Enum.Font.Code
+Title.Name = "Title"
+Title.Size = UDim2.new(1, 0, 0.800000012, 0)
+Title.Text = "Title"
+Title.TextColor3 = Color3.new(1, 1, 1)
+Title.TextScaled = true
+Title.TextSize = 14
+Title.TextWrapped = true
+Title.ZIndex = 6
+
+local Description2 = Instance.new("TextLabel", Popup)
+
+Description2.BackgroundColor3 = Color3.new(1, 1, 1)
+Description2.BackgroundTransparency = 1
+Description2.BorderColor3 = Color3.new(0, 0, 0)
+Description2.BorderSizePixel = 0
+Description2.Font = Enum.Font.Code
+Description2.Name = "Description"
+Description2.Position = UDim2.new(0.0460829511, 0, 0.139687702, 0)
+Description2.Size = UDim2.new(0.90322578, 0, 0.569926202, 0)
+Description2.Text = "Description"
+Description2.TextColor3 = Color3.new(1, 1, 1)
+Description2.TextScaled = true
+Description2.TextSize = 14
+Description2.TextWrapped = true
+Description2.ZIndex = 5
+
+local OkButton = Instance.new("TextButton", Popup)
+
+OkButton.BackgroundColor3 = Color3.new(0.317647, 0.317647, 0.317647)
+OkButton.BorderColor3 = Color3.new(0, 0, 0)
+OkButton.BorderSizePixel = 0
+OkButton.Font = Enum.Font.Code
+OkButton.Name = "Button"
+OkButton.Position = UDim2.new(0.299539179, 0, 0.763023913, 0)
+OkButton.Size = UDim2.new(0.398617506, 0, 0.195891529, 0)
+OkButton.Text = "Ok"
+OkButton.TextColor3 = Color3.new(1, 1, 1)
+OkButton.TextScaled = true
+OkButton.TextSize = 14
+OkButton.TextWrapped = true
+OkButton.ZIndex = 6
+
+local Round = Instance.new("UICorner", OkButton)
+
+
+local Block = Instance.new("Frame", Popup)
+
+Block.BackgroundColor3 = Color3.new(0.113725, 0.113725, 0.113725)
+Block.BorderColor3 = Color3.new(0, 0, 0)
+Block.BorderSizePixel = 0
+Block.Name = "Block"
+Block.Position = UDim2.new(0, 0, 0.100000001, 0)
+Block.Size = UDim2.new(1, 0, 0.0399999991, 0)
+Block.ZIndex = 7
+
+local Round = Instance.new("UICorner", Block)
+
+-- Functions
+
+function Sound(Parent,Id,Pitch)
+
+	local Sound = Instance.new("Sound")
+
+	if type(Parent) == "userdata" then
+
+		Sound.Parent = Parent
+
+	end
+
+	if type(Parent) == "vector" then
+
+		local Part = Instance.new("Part",game.Workspace)
+		Part.Transparency = 1
+		Part.Anchored = true
+		Part.Position = Parent
+		Part.Size = Vector3.new(0.01,0.01,0.01)
+		Sound.Parent = Part
+
+		Sound.Ended:Connect(function() wait(0.5) Part:Destroy()  end)
+
+	end
+
+	Sound.SoundId = "rbxassetid://" .. Id
+
+	if Pitch == nil then
+
+		Sound.PlaybackSpeed = 1
+
+	end
+
+	if Pitch == "random" then
+
+		Sound.PlaybackSpeed = math.random(90,110) / 100
+
+	else
+
+		Sound.PlaybackSpeed = Pitch
+
+	end
+
+	Sound:Play()
+
+	Sound.Ended:Connect(function() wait(0.5) Sound:Destroy()  end)
+
+end
+
+function ShowPopup(TitleText: string,DescriptionText: string,ButtonText: string)
+
+	Popup.Visible = true
+
+	Sound(game.Workspace,"3398620867",1)
+
+	OkButton.Text = ButtonText
+
+	Description2.Text = DescriptionText
+
+	Title.Text = TitleText
+
+	OkButton.MouseButton1Down:Once(function()
+
+		Popup.Visible = false
+
+	end)
+
+end
+
+-- Variables
+
+local Open = false
+local Plr = game.Players.LocalPlayer
+local Mouse = Plr:GetMouse()
+local ID = game.PlaceId
+local Commands = {}
+
+-- Appear
+
+game.TweenService:Create(Main,TweenInfo.new(0.5),{BackgroundTransparency = 0.4}):Play()
+game.TweenService:Create(Toggle,TweenInfo.new(0.5),{Position = UDim2.new(0.475, 0, -0.55, 0)}):Play()
+
+spawn(function()
+
+	wait(0.5)
+	Toggle.Active = true
+
+end)
+
+local Games = {
+
+	["142823291"] = function ()
+
+		Commands = {
+			
+			{
+
+				Name = "Show Roles",
+				Type = "Button",
+				Desc = "Shows you the roles of everybody",
+				Action = function(On)
+
+					for _, Thing in game.Players:GetPlayers() do
+
+						local Highlight = Instance.new("Highlight",Thing.Character)
+
+						Highlight.FillTransparency = 1
+
+						if Thing.Character:FindFirstChild("PlayerHighlightType") then
+
+							Thing.Character:FindFirstChild("PlayerHighlightType"):Destroy()
+
+						end
+
+						Highlight.Name = "PlayerHighlightType"
+
+						Highlight.OutlineColor = Color3.new(1,1,1)
+
+						if Thing.Backpack:FindFirstChild("Knife") or Thing.Character:FindFirstChild("Knife") then
+
+							Highlight.OutlineColor = Color3.new(1,0,0)
+
+						end
+
+						if Thing.Backpack:FindFirstChild("Gun") or Thing.Character:FindFirstChild("Gun") then
+
+							Highlight.OutlineColor = Color3.new(0,0,1)
+
+						end
+
+					end
+
+				end,
+
+			},
+
+			{
+
+				Type = "Split",
+
+			},
+
+			{
+
+				Name = "To Innocent",
+				Type = "Button",
+				Desc = "Teleport to an innocent.",
+				Action = function(On)
+
+					local Inno = nil
+
+					for _, Thing in game.Players:GetPlayers() do
+
+						if Thing and Thing.Backpack:FindFirstChild("Gun") or Thing and Thing.Character:FindFirstChild("Gun") then
+
+							continue
+
+						end
+
+						if Thing and Thing.Backpack:FindFirstChild("Knife") or Thing and Thing.Character:FindFirstChild("Knife") then
+
+							continue
+
+						end
+
+						Inno = Thing
+
+					end
+
+					if Inno == nil then
+
+						ShowPopup("Teleport","The round hasnt started yet or people haven't got their items.","Ok")
+
+					else
+
+						game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = Inno.Character.HumanoidRootPart.CFrame
+
+					end
+
+				end,
+
+			},
+
+			{
+
+				Name = "To Sheriff",
+				Type = "Button",
+				Desc = "Teleport to the sheriff.",
+				Action = function(On)
+
+					local Sheriff = nil
+
+					for _, Thing in game.Players:GetPlayers() do
+
+						if Thing and  Thing.Backpack:FindFirstChild("Gun") or Thing and Thing.Character:FindFirstChild("Gun") then
+
+							Sheriff = Thing
+
+						end
+
+					end
+
+					if Sheriff == nil then
+
+						ShowPopup("Teleport","The round hasnt started yet or people haven't got their items.","Ok")
+
+					else
+
+						game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = Sheriff.Character.HumanoidRootPart.CFrame
+
+					end
+
+				end,
+
+			},
+
+			{
+
+				Name = "To Murderer",
+				Type = "Button",
+				Desc = "Teleport to the murderer.",
+				Action = function(On)
+
+					local Murderer = nil
+
+					for _, Thing in game.Players:GetPlayers() do
+
+						if Thing.Backpack:FindFirstChild("Knife") or Thing.Character:FindFirstChild("Knife") then
+
+							Murderer = Thing
+
+						end
+
+					end
+
+					if Murderer == nil then
+
+						ShowPopup("Teleport","The round hasnt started yet or people haven't got their items.","Ok")
+
+					else
+
+						game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = Murderer.Character.HumanoidRootPart.CFrame
+
+					end
+
+				end,
+
+			},
+
+			{
+
+				Type = "Split",
+
+			},
+
+			{
+
+				Name = "Goto Coin",
+				Type = "Button",
+				Desc = "Goto a coin. (Changed to only going to 1 coin since going to multiple activates anticheat)",
+				Action = function(On)
+
+					for _, Thing in game.Workspace:GetDescendants() do
+
+						if Thing.Name == "CoinVisual" and Thing:IsA("BasePart") then
+
+							game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = Thing.CFrame
+							return
+
+						end
+
+					end
+
+					ShowPopup("Teleport","Theres no coins on the map.","Oh")
+
+				end,
+
+			},
+
+			{
+
+				Name = "Goto Lobby",
+				Type = "Button",
+				Desc = "Goto the lobby. Good for innocent.",
+				Action = function(On)
+
+					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-107.900009, 146.830475, 22.3888321, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+
+				end,
+
+			},
+
+			{
+
+				Name = "Goto Sheriff Gun (If Dropped)",
+				Type = "Button",
+				Desc = "Goto the dropped gun.",
+				Action = function(On)
+
+					for _, Thing in game.Workspace:GetDescendants() do
+
+						if Thing.Name == "GunDrop" and Thing:IsA("BasePart") then
+
+							game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = Thing.CFrame
+							return
+
+						end
+
+					end
+
+					ShowPopup("Teleport","The gun is not dropped.","Oh")
+
+				end,
+
+			},
+			
+		}
+
+	end,
+	
+	["662417684"] = function ()
+
+		local Opening = false
+
+		Commands = {
+
+			{
+
+				Name = "Lucky Block",
+				Type = "Button",
+				Desc = "Open a lucky block.",
+				Action = function()
+
+					game:GetService("ReplicatedStorage").SpawnLuckyBlock:FireServer()
+
+				end,
+
+			},
+
+			{
+
+				Name = "Rainbow Block",
+				Type = "Button",
+				Desc = "Open a rainbow block.",
+				Action = function()
+
+					game:GetService("ReplicatedStorage").SpawnRainbowBlock:FireServer()
+
+				end,
+
+			},
+
+			{
+
+				Name = "Diamond Block",
+				Type = "Button",
+				Desc = "Open a diamond block.",
+				Action = function()
+
+					game:GetService("ReplicatedStorage").SpawnDiamondBlock:FireServer()
+
+				end,
+
+			},
+
+			{
+
+				Name = "Galaxy Block",
+				Type = "Button",
+				Desc = "Open a galaxy block.",
+				Action = function()
+
+					game:GetService("ReplicatedStorage").SpawnGalaxyBlock:FireServer()
+
+				end,
+
+			},
+
+			{
+
+				Name = "Super Block",
+				Type = "Button",
+				Desc = "Open a unused super block. Opens 1 item but is rare.",
+				Action = function()
+
+					game:GetService("ReplicatedStorage").SpawnSuperBlock:FireServer()
+
+				end,
+
+			},
+
+			{
+
+				Type = "Split",
+
+			},
+
+			{
+
+				Name = "Get Items",
+				Type = "Toggle",
+				Desc = "Keep on getting items until you get every single one.",
+				Action = function(On)
+
+					if On then
+
+						Opening = true
+
+						spawn(function()
+
+							while Opening do
+
+								for i=1,10 do
+
+									game:GetService("ReplicatedStorage").SpawnLuckyBlock:FireServer()
+									game:GetService("ReplicatedStorage").SpawnSuperBlock:FireServer()
+									game:GetService("ReplicatedStorage").SpawnGalaxyBlock:FireServer()
+									game:GetService("ReplicatedStorage").SpawnDiamondBlock:FireServer()
+									game:GetService("ReplicatedStorage").SpawnRainbowBlock:FireServer()
+
+								end
+								wait(0.1)
+
+							end
+
+						end)
+
+					else
+
+						Opening = false
+
+					end
+
+				end,
+
+			},
+
+		}
+
+	end,
+	
+	["15980086096"] = function ()
+		
+		local OldPos = CFrame.new()
+
+		local Untouchable = false
+
+		Commands = {
+
+			{
+
+				Name = "Godly Upgrade",
+				Type = "Button",
+				Desc = "Select a infection punch or melee to make it op.",
+				Action = function(On)
+
+					if game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool") then
+
+						local Tool = Instance.new("Tool")
+
+						Tool = game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool")
+
+						game.Players.LocalPlayer.Character.Humanoid:UnequipTools()
+
+						if Tool.TextureId == "http://www.roblox.com/asset/?id=2421576431" then
+
+							ShowPopup("Godly Upgrade","This tool is already modded.","Ok")
+							return					
+
+						end
+
+						Tool.TextureId = "http://www.roblox.com/asset/?id=2421576431"
+
+						Tool.ToolTip = "Godly Weapon"
+
+						Tool.Equipped:Connect(function()
+
+							local stopit = false
+
+							Tool.Unequipped:Connect(function()
+
+								stopit = true
+
+							end)
+
+							repeat
+
+
+								local player = game.Players.LocalPlayer
+								local root = player.Character and player.Character:FindFirstChild("HumanoidRootPart")
+								if not root then return end
+
+								local Closest, CDist = nil, math.huge
+
+								for _, other in pairs(game.Players:GetPlayers()) do
+									if other.Character.Humanoid.DisplayName ~= "ghost" and other ~= player and other.Character then
+										local otherRoot = other.Character:FindFirstChild("HumanoidRootPart")
+										if otherRoot then
+											local Dist = (root.Position - otherRoot.Position).Magnitude
+											if Dist < CDist then
+												Closest, CDist = other.Character, Dist
+											end
+										end
+									end
+								end
+
+								if Closest then
+									if Tool.Name ~= "Gun" then
+
+										local Head = Closest:WaitForChild("Head")
+										local Humanoid = Closest:WaitForChild("Humanoid")
+										local Pos = Closest:WaitForChild("Torso").Position
+
+										for i=1,5 do
+
+											Tool.Remote.Hit:FireServer(Head,Humanoid,Pos)
+
+										end
+
+									else
+
+										local Pos = Closest:WaitForChild("Torso").Position
+
+										Tool.Shoot:FireServer(Pos)
+
+									end
+								end
+
+								wait(0.01)
+
+							until stopit
+
+						end)
+
+					else
+
+						ShowPopup("Godly Upgrade","Please hold an item that can be modded.","Ok")
+
+					end
+
+				end,
+
+			},
+
+			{
+
+				Name = "Swoop (READ DESC)",
+				Type = "Button",
+				Desc = "Equip any melee weapon and click this, Then when you hold it, Click when you swoop into somebody.",
+				Action = function(On)
+
+					if game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool") then
+
+						local Tool = Instance.new("Tool")
+
+						Tool = game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool")
+
+						game.Players.LocalPlayer.Character.Humanoid:UnequipTools()
+
+						if Tool.TextureId == "http://www.roblox.com/asset/?id=7485051715" then
+
+							ShowPopup("Lock-Hit","This tool is already modded.","Ok")
+							return					
+
+						end
+
+						Tool.TextureId = "http://www.roblox.com/asset/?id=7485051715"
+
+						Tool.ToolTip = "Equip to SWOOP"
+
+						Tool.Activated:Connect(function()
+
+							wait(0.3)
+							Tool.Enabled = false
+							wait(1)
+							Tool.Enabled = true
+
+						end)
+
+						Tool.Equipped:Connect(function()
+
+							for _, Thing in game.Workspace:GetDescendants() do
+
+								if Thing:IsA("BasePart") then
+
+									Thing:SetAttribute("Collide",Thing.CanCollide)
+
+									Thing.CanCollide = false
+
+								end
+
+							end
+
+							local Move = Instance.new("BodyPosition",game.Players.LocalPlayer.Character.HumanoidRootPart)
+
+							Move.MaxForce *= 7
+							Move.P *= 2.5
+
+							local Stop = false					
+
+							game.Players.LocalPlayer.Character.Humanoid.PlatformStand = true
+
+							Tool.Unequipped:Connect(function()
+
+								for _, Thing in game.Workspace:GetDescendants() do
+
+									if Thing:IsA("BasePart") then
+
+										Thing.CanCollide = Thing:GetAttribute("Collide")
+
+									end
+
+								end
+
+								Move:Destroy()
+								Stop = true
+								game.Players.LocalPlayer.Character.Humanoid.PlatformStand = false
+
+							end)
+
+							while not Stop do
+
+								task.wait(0.1)
+
+								local player = game.Players.LocalPlayer
+								local root = player.Character and player.Character:FindFirstChild("HumanoidRootPart")
+								if not root then return end
+
+								local Closest, CDist = nil, math.huge
+
+								for _, other in pairs(game.Players:GetPlayers()) do
+									if other ~= player and other.Team ~= player.Team and other.Character then
+										local otherRoot = other.Character:FindFirstChild("HumanoidRootPart")
+										if otherRoot then
+											local Dist = (root.Position - otherRoot.Position).Magnitude
+											if Dist < CDist then
+												Closest, CDist = otherRoot, Dist
+											end
+										end
+									end
+								end
+
+								if Closest then
+
+									if Tool.Enabled then
+
+										Move.Position = Closest.Position + (Closest.Velocity / 4) - Vector3.new(0,3,0)
+
+									else
+
+										Move.Position = Closest.Position + (Closest.Velocity / 4) + Vector3.new(0,50,0)
+
+									end
+
+								end
+
+							end
+
+						end)
+
+					else
+
+						ShowPopup("Lock-Hit","Please hold a melee.","Ok")
+
+					end
+
+				end,
+
+			},
+
+			{
+
+				Type = "Split",
+
+			},
+
+			{
+
+				Name = "Auto-Escape",
+				Type = "Toggle",
+				Desc = "Instantly escapes from grabs.",
+				Action = function(On)
+
+					if On then
+
+						Untouchable = true
+
+						spawn(function()
+
+							while Untouchable do
+
+								task.wait()
+
+								if game.Players.LocalPlayer.PlayerGui:FindFirstChild("EscapeGui") then
+
+									game.Players.LocalPlayer.PlayerGui:FindFirstChild("EscapeGui").Remote.Hit:InvokeServer()
+
+								end
+
+							end
+
+						end)
+
+					else
+
+						Untouchable = false
+
+					end
+
+				end,
+
+			},
+
+			{
+
+				Name = "Antidote",
+				Type = "Toggle",
+				Desc = "Goo doesnt effect you.",
+				Action = function(On)
+
+					if On then
+
+						for _, Thing in game.Workspace:GetDescendants() do
+
+							if Thing.Name == "TransfurPart" and Thing:IsA("BasePart") then
+
+								Thing.CanTouch = false
+								Thing.Transparency = 0.8
+
+							end
+
+						end
+
+					else
+
+						for _, Thing in game.Workspace:GetDescendants() do
+
+							if Thing.Name == "TransfurPart" and Thing:IsA("BasePart") then
+
+								Thing.CanTouch = true
+								Thing.Transparency = 0
+
+							end
+
+						end
+
+					end
+
+				end,
+
+			},
+
+			{
+
+				Name = "Spam Jump",
+				Type = "Toggle",
+				Desc = "Remove the jump cooldown.",
+				Action = function(On)
+
+					if On then
+
+						game.Players.LocalPlayer.Character.JumpCooldown.Enabled = false
+
+					else
+
+						game.Players.LocalPlayer.Character.JumpCooldown.Enabled = true
+
+					end
+
+				end,
+
+			},
+
+			{
+
+				Name = "Disable Forcefield",
+				Type = "Toggle",
+				Desc = "The lobby forcefield doesnt effect you.",
+				Action = function(On)
+
+					if On then
+
+						for _, Thing in game.Workspace:GetDescendants() do
+
+							if Thing.Name == "Kill" and Thing:IsA("BasePart") then
+
+								Thing.CanTouch = false
+								Thing.Color = Color3.new(0,1,0)
+								Thing.Transparency = 0.7
+
+							end
+
+						end
+
+					else
+
+						for _, Thing in game.Workspace:GetDescendants() do
+
+							if Thing.Name == "Kill" and Thing:IsA("BasePart") then
+
+								Thing.CanTouch = true
+								Thing.Transparency = 1
+
+							end
+
+						end
+
+					end
+
+				end,
+
+			},
+
+			{
+
+				Type = "Split",
+
+			},
+
+			{
+
+				Name = "Lobby",
+				Type = "Button",
+				Desc = "Go to the lobby.",
+				Action = function(On)
+
+					for _, Thing in game.Players.LocalPlayer.Character:GetDescendants() do
+
+						if Thing:IsA("BasePart") then
+
+							Thing.Velocity = Vector3.new(0,0,0)
+
+						end
+
+					end
+
+					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(136, 9, -11776)
+
+				end,
+
+			},
+
+			{
+
+				Name = "Puddle",
+				Type = "Button",
+				Desc = "Go to a puddle.",
+				Action = function(On)
+
+					for _, Thing in game.Players.LocalPlayer.Character:GetDescendants() do
+
+						if Thing:IsA("BasePart") then
+
+							Thing.Velocity = Vector3.new(0,0,0)
+
+						end
+
+					end
+
+					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(223, -10, -11788)
+
+				end,
+
+			},
+
+			{
+
+				Name = "Outside",
+				Type = "Button",
+				Desc = "Go outside.",
+				Action = function(On)
+
+					for _, Thing in game.Players.LocalPlayer.Character:GetDescendants() do
+
+						if Thing:IsA("BasePart") then
+
+							Thing.Velocity = Vector3.new(0,0,0)
+
+						end
+
+					end
+
+					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(120, 47, -11797)
+
+				end,
+
+			},
+
+		}
+		
+	end,
+	
+	["10679239752"] = function ()
+		
+		local Speed = 16
+		local UsingSpeed = false
+		local SpeedWarn = false
+		local NilFolder = Instance.new("Folder",nil)
+		local Herecomesthemoneyyyyyyherewegomoneytimeherecomesthemoneyyyymoneymoneymoneymoneymoneymoneymoneymoneymoneyyyyyyyyyyyyyyyyy = false
+		local Plr = game.Players.LocalPlayer
+
+		local Character = Plr.Character or Plr.CharacterAdded:Wait()
+
+		Plr.CharacterAdded:Connect(function(New)
+
+			Character = New
+
+		end)
+
+		Commands = {
+
+			{
+
+				Name = "Loop Speed",
+				Desc = "Keep setting your speed to this. 25-30 is recommended so the anticheat dont activate.",
+				Type = "Metre",
+				Min = 16,
+				Max = 35,
+				Default = 16,
+				Action = function(Value)
+
+					Speed = Value
+
+					if tonumber(Speed) > tonumber(30) and SpeedWarn == false then
+
+						SpeedWarn = true
+						ShowPopup("Warning","Going over 30 could sometimes trigger the anticheat and going over 35 can often trigger the anticheat.","Got it")
+
+					end
+
+				end,
+
+			},
+
+			{
+
+				Name = "Toggle Speed",
+				Desc = "Toggle the loop speed. (HINT: If you do it right, sometimes by not moving and grabbing, or not, you can move really fast while grabbing somebody.",
+				Type = "Toggle",
+				Action = function(On)
+
+					if On then
+
+						UsingSpeed = true
+
+						spawn(function()
+
+							repeat
+
+								task.wait()
+
+								Character.Humanoid.WalkSpeed = Speed
+
+							until not UsingSpeed
+
+						end)
+
+					else
+
+						UsingSpeed = false
+
+					end
+
+				end,
+
+			},
+
+			{
+
+				Type = "Split",
+
+			},
+
+			{
+
+				Name = "Disable Forcefield",
+				Desc = "Be able to go inside forcefields as a infected.",
+				Type = "Toggle",
+				Action = function(On)
+
+					if On then
+
+						local Map = nil
+
+						for _, Thing in game.Workspace:GetChildren() do
+
+							if Thing:FindFirstChildOfClass("SpawnLocation") then
+
+								Map = Thing
+
+							end
+
+						end
+
+						for _, Thing in Map:GetDescendants() do
+
+							if Thing:IsA("BasePart") and Thing.Parent.Name ~= "Model" and Thing:FindFirstChild("Script") and Thing:FindFirstChild("Weld") and Thing:FindFirstChild("TouchInterest") then
+
+								local Object = Instance.new("ObjectValue",Thing)
+
+								Object.Name = "OriginalParent"
+
+								Object.Value = Thing.Parent
+
+								Thing.Parent = NilFolder
+
+							end
+
+						end
+
+					else
+
+						for _, Thing in NilFolder:GetChildren() do
+
+							Thing.Parent = Thing:FindFirstChild("OriginalParent").Value
+
+						end
+
+					end
+
+				end,
+
+			},
+
+			{
+
+				Name = "Antidote",
+				Desc = "Be immortal to infection puddles.",
+				Type = "Toggle",
+				Action = function(On)
+
+					if On then
+
+						local Map = nil
+
+						for _, Thing in game.Workspace:GetChildren() do
+
+							if Thing:FindFirstChildOfClass("SpawnLocation") then
+
+								Map = Thing
+
+							end
+
+						end
+
+						for _, Thing in Map:GetDescendants() do
+
+							if Thing:IsA("BasePart") and Thing.Parent.Name == "Model" and Thing:FindFirstChild("Script") and Thing:FindFirstChild("Weld") and Thing:FindFirstChild("TouchInterest") then
+
+								Thing.CanTouch = false
+								Thing.Transparency = 0.5
+
+							end
+
+						end
+
+					else
+
+						local Map = nil
+
+						for _, Thing in game.Workspace:GetChildren() do
+
+							if Thing:FindFirstChildOfClass("SpawnLocation") then
+
+								Map = Thing
+
+							end
+
+						end
+
+						for _, Thing in Map:GetDescendants() do
+
+							if Thing:IsA("BasePart") and Thing.Parent.Name == "Model" and Thing:FindFirstChild("Script") and Thing:FindFirstChild("Weld") and Thing:FindFirstChild("TouchInterest") then
+
+								Thing.CanTouch = true
+								Thing.Transparency = 0
+
+							end
+
+						end
+
+					end
+
+				end,
+
+			},
+
+			{
+
+				Name = "Auto-Money",
+				Desc = "Get all money that appears (Only works as non infected).",
+				Type = "Toggle",
+				Action = function(On)
+
+					if On then
+
+						local Map = nil
+
+						for _, Thing in game.Workspace:GetChildren() do
+
+							if Thing:FindFirstChildOfClass("SpawnLocation") then
+
+								Map = Thing
+
+							end
+
+						end
+
+						Herecomesthemoneyyyyyyherewegomoneytimeherecomesthemoneyyyymoneymoneymoneymoneymoneymoneymoneymoneymoneyyyyyyyyyyyyyyyyy = true
+
+						for _, Thing in Map:GetDescendants() do
+
+							if Thing:IsA("BasePart") and Thing.Name == "MoneyStack" then
+
+								Thing:SetAttribute("OldPos",Thing.Position)
+
+							end
+
+						end
+
+						spawn(function()
+
+							while Herecomesthemoneyyyyyyherewegomoneytimeherecomesthemoneyyyymoneymoneymoneymoneymoneymoneymoneymoneymoneyyyyyyyyyyyyyyyyy do
+
+								wait(0.1)
+
+								for _, Thing in Map:GetDescendants() do
+
+									if Thing:IsA("BasePart") and Thing.Name == "MoneyStack" then
+
+										Thing.Position = Character.HumanoidRootPart.Position
+
+									end
+
+								end
+
+							end
+
+						end)
+
+					else
+
+						Herecomesthemoneyyyyyyherewegomoneytimeherecomesthemoneyyyymoneymoneymoneymoneymoneymoneymoneymoneymoneyyyyyyyyyyyyyyyyy = false -- ): no money
+
+						local Map = nil
+
+						for _, Thing in game.Workspace:GetChildren() do
+
+							if Thing:FindFirstChildOfClass("SpawnLocation") then
+
+								Map = Thing
+
+							end
+
+						end
+
+						pcall(function()
+
+							for _, Thing in Map:GetDescendants() do
+
+								if Thing:IsA("BasePart") and Thing.Name == "MoneyStack" then
+
+									Thing.Position = Thing:GetAttribute("OldPos")
+
+								end
+
+							end
+
+						end)
+
+					end
+
+				end,
+
+			},
+
+			{
+
+				Name = "Spam Jump",
+				Desc = "Lets you jump without cooldown.",
+				Type = "Toggle",
+				Action = function(On)
+
+					if On then
+
+						Plr.PlayerGui.JumpCooldown.Enabled = false
+
+					else
+
+						Plr.PlayerGui.JumpCooldown.Enabled = true
+
+					end
+
+				end,
+
+			},
+
+		}
+		
+	end,
+	
+	["13987158269"] = function ()
+		
+		local Immortal = false
+		local Reveal = false
+		local AutoWin = false
+
+		Commands = {
+
+			{
+
+				Name = "Xray",
+				Type = "Toggle",
+				Desc = "See whats correct.",
+				Action = function(Value)
+
+					if Value then
+
+						for _, Item in game.Workspace.segmentSystem.Segments:GetDescendants() do
+
+							if Item:IsA("BasePart") then
+
+								Item:SetAttribute("OldColor",Item.Color)
+
+								if Item.CanCollide == true then
+
+									Item.Color = Color3.new(0,1,0)
+
+								else
+
+									Item.Color = Color3.new(1,0,0)
+
+								end
+
+							end
+
+						end
+
+					else
+
+						for _, Item in game.Workspace.segmentSystem.Segments:GetDescendants() do
+
+							if Item:IsA("BasePart") then
+
+								Item.Color = Item:GetAttribute("OldColor")
+
+							end
+
+						end
+
+					end
+
+				end
+
+			},
+
+			{
+
+				Name = "Win",
+				Type = "Button",
+				Desc = "Win the game.",
+				Action = function()
+
+					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-744.0151977539062, 80.515592575073242, -556.0556640625)
+
+				end
+
+			},
+
+			{
+
+				Name = "Auto-Win",
+				Type = "Toggle",
+				Desc = "Win the game over and over.",
+				Action = function(On)
+
+					if On then
+
+						AutoWin = true
+
+						spawn(function()
+
+							repeat
+
+								game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-744.0151977539062, 70.515592575073242, -556.0556640625)
+
+								for _, Thing in game.Players.LocalPlayer.Character:GetDescendants() do
+
+									if Thing:IsA("BasePart") then
+
+										Thing.Velocity = Vector3.new(0,0,0)
+
+									end
+
+								end
+
+								for _, Thing in game.Players.LocalPlayer.PlayerGui.HUD:GetChildren() do
+
+									if Thing.Name == "Frame" then
+
+										Thing:Destroy()
+
+									end
+
+								end
+
+								wait(0.5)
+
+							until not AutoWin
+
+						end)
+
+					else
+
+						AutoWin = false
+
+					end
+
+				end
+
+			},
+
+			{
+
+				Name = "Immortality",
+				Type = "Toggle",
+				Desc = "All glass is safe.",
+				Action = function(Value)
+
+					if Reveal then
+
+						ShowPopup("Error","Please disable reveal path first.","Ok")
+						return
+
+					end
+
+					if Value then
+
+						Immortal = true
+
+						local Highlight = Instance.new("Highlight", game.Players.LocalPlayer.Character)
+						Highlight.FillTransparency = 1
+						Highlight.Name = "Protect"
+						Highlight.OutlineTransparency = 0
+						Highlight.OutlineColor = Color3.new(0.133333, 0.741176, 1)
+
+						for _, Item in game.Workspace.segmentSystem.Segments:GetDescendants() do
+
+							if Item:IsA("BasePart") then
+
+								Item:SetAttribute("CanCollide", Item.CanCollide)
+
+								if Item.CanCollide == false then
+
+									Item.CanCollide = true
+									Item.CanTouch = false
+
+								end
+
+							end
+
+						end
+
+					else
+
+						Immortal = false
+
+						if game.Players.LocalPlayer.Character:FindFirstChild("Protect") then
+
+							game.Players.LocalPlayer.Character.Protect:Destroy()
+
+						end
+
+						for _, Item in game.Workspace.segmentSystem.Segments:GetDescendants() do
+
+							if Item:IsA("BasePart") then
+
+								Item.CanCollide = Item:GetAttribute("CanCollide")
+								Item.CanTouch = true
+
+							end
+
+						end
+
+					end
+
+				end
+
+			},
+
+			{
+
+				Name = "Reveal Path",
+				Type = "Toggle",
+				Desc = "Reveal the path to everybody else.",
+				Action = function(On)
+
+					if Immortal then
+
+						ShowPopup("Error","Please disable immortality first.","Ok")
+						return
+
+					end
+
+					if On then
+
+						Reveal = true
+
+						spawn(function()
+
+							while Reveal do
+
+								task.wait()
+
+								for _, Item in game.Workspace.segmentSystem.Segments:GetDescendants() do
+
+									if Item:IsA("BasePart") then
+
+										if Item.CanCollide == false and Item.Name ~= "Center" and Item.Transparency ~= 1 then
+
+											local OldPos = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+
+											game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = Item.CFrame
+
+											for _, Thing in game.Players.LocalPlayer.Character:GetDescendants() do
+
+												if Thing:IsA("BasePart") then
+
+													Thing.Velocity = Vector3.new(0,0,0)
+
+												end
+
+											end
+
+											task.wait(0.13)
+
+											game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 16
+											game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = OldPos
+
+										end
+
+									end
+
+								end
+
+							end
+
+						end)
+
+					else
+
+						Reveal = false
+
+					end
+
+				end
+
+			},
+
+		}
+		
+	end,
+	
+	["2913303231"] = function ()
+		
+		local EnableConveyors = true
+		local EnableBans = true
+
+		Commands = {
+
+			{
+
+				Name = "Disabler",
+				Type = "Button",
+				Desc = "Lets you disable/enable any block BUT CONVEYORS when you click it.",
+				Action = function()
+
+					local Tool = Instance.new("Tool",game.Players.LocalPlayer.Backpack)
+
+					Tool.Name = "Disabler"
+					Tool.TextureId = "http://www.roblox.com/asset/?id=2290983952"
+					Tool.ToolTip = "Disable anything (But conveyors)"
+					Tool.RequiresHandle = false
+
+					Tool.Activated:Connect(function()
+
+						local Item = game.Players.LocalPlayer:GetMouse().Target
+
+						if Item:HasTag("Disabled") and Item.Parent.Parent.Name == "Items" then
+
+							Item:RemoveTag("Disabled")
+							Item.Transparency = Item:GetAttribute("OldTransparency")
+							Item.CanTouch = true
+
+						elseif Item.Parent.Parent.Name == "Items" then
+
+							Item:AddTag("Disabled")
+							Item:SetAttribute("OldTransparency",Block.Transparency)
+							Item.Transparency = 0.5
+							Item.CanTouch = false
+
+						end
+
+					end)
+
+				end,
+
+			},
+
+			{
+
+				Name = "Disable Lava",
+				Type = "Toggle",
+				Desc = "Disables all lava blocks.",
+				Action = function(Value)
+
+					if Value == true then
+
+						for _, Block in game.Workspace:GetDescendants() do
+
+							if string.find(Block.Name,"Lava") and Block:IsA("Part") then
+
+								Block:SetAttribute("OldTransparency",Block.Transparency)
+								Block.Transparency = 0.5
+								Block.CanTouch = false
+
+							end
+
+						end
+
+					else
+
+						for _, Block in game.Workspace:GetDescendants() do
+
+							if string.find(Block.Name,"Lava") and Block:IsA("Part") then
+
+								Block.Transparency = Block:GetAttribute("OldTransparency")
+								Block.CanTouch = true
+
+							end
+
+						end
+
+					end
+
+				end,
+
+			},
+
+			{
+
+				Name = "Disable Teleports",
+				Type = "Toggle",
+				Desc = "Disables all teleport pads.",
+				Action = function(Value)
+
+					if Value == true then
+
+						for _, Block in game.Workspace:GetDescendants() do
+
+							if string.find(Block.Name,"Teleport") and Block:IsA("Part") then
+
+								Block:SetAttribute("OldTransparency",Block.Transparency)
+								Block.Transparency = 0.5
+								Block.CanTouch = false
+
+							end
+
+						end
+
+					else
+
+						for _, Block in game.Workspace:GetDescendants() do
+
+							if string.find(Block.Name,"Teleport") and Block:IsA("Part") then
+
+								Block.Transparency = Block:GetAttribute("OldTransparency")
+								Block.CanTouch = true
+
+							end
+
+						end
+
+					end
+
+				end,
+
+			},
+
+			{
+
+				Name = "Disable Fading Blocks",
+				Type = "Toggle",
+				Desc = "Disables all fading blocks.",
+				Action = function(Value)
+
+					if Value == true then
+
+						for _, Block in game.Workspace:GetDescendants() do
+
+							if string.find(Block.Name,"Fading") and Block:IsA("Part") then
+
+								Block:SetAttribute("OldTransparency",Block.Transparency)
+								Block.Transparency = 0.5
+								Block.CanTouch = false
+
+							end
+
+						end
+
+					else
+
+						for _, Block in game.Workspace:GetDescendants() do
+
+							if string.find(Block.Name,"Fading") and Block:IsA("Part") then
+
+								Block.Transparency = Block:GetAttribute("OldTransparency")
+								Block.CanTouch = true
+
+							end
+
+						end
+
+					end
+
+				end,
+
+			},
+
+			{
+
+				Name = "Disable all but parts",
+				Type = "Toggle",
+				Desc = "Disables all blocks but parts",
+				Action = function(Value)
+
+					if Value == true then
+
+						for _, Block in game.Workspace:GetDescendants() do
+
+							if Block.Parent.Parent.Name == "Items" and not string.find(Block.Name,"Part") and Block:IsA("Part") then
+
+								Block:SetAttribute("OldTransparency",Block.Transparency)
+								Block.Transparency = 0.5
+								Block.CanTouch = false
+
+							end
+
+						end
+
+					else
+
+						for _, Block in game.Workspace:GetDescendants() do
+
+							if not string.find(Block.Name,"Part") and Block:IsA("Part") then
+
+								Block.Transparency = Block:GetAttribute("OldTransparency")
+								Block.CanTouch = true
+
+							end
+
+						end
+
+					end
+
+				end,
+
+			},
+
+			{
+
+				Name = "Disable Conveyors",
+				Type = "Toggle",
+				Desc = "Disables all conveyors.",
+				Action = function(Value)
+
+					if Value == true then
+
+						for _, Block in game.Workspace:GetDescendants() do
+
+							if string.find(Block.Name,"Conveyor") and Block:IsA("Part") then
+
+								Block:SetAttribute("OldTransparency",Block.Transparency)
+								Block.Transparency = 0.5
+								local Clone = Instance.new("Part",Block)
+								Clone.Transparency = 1
+								Clone.Name = "CoverConveyor"
+								Clone.Size = Block.Size + Vector3.new(0.1,0.1,0.1)
+								Clone.Anchored = true
+								Clone.Orientation = Block.Orientation
+								Clone.Position = Block.Position
+
+								spawn(function()
+
+									EnableConveyors = false
+									while not EnableConveyors do
+
+										wait(0.01)
+
+									end
+
+									Clone:Destroy()
+
+								end)
+
+							end
+
+						end
+
+					else
+
+						for _, Block in game.Workspace:GetDescendants() do
+
+							if string.find(Block.Name,"Conveyor") and Block:IsA("Part") then
+
+								EnableConveyors = true
+
+								Block.Transparency = Block:GetAttribute("OldTransparency")
+
+							end
+
+						end
+
+					end
+
+				end,
+
+			},
+
+			{
+
+				Name = "Disable Falling",
+				Type = "Toggle",
+				Desc = "Disables falling by adding a part under you.",
+				Action = function(Value)
+
+					if Value == true then
+
+						local Part = Instance.new("Part",game.Workspace)
+						Part.Name = "AntiFallPart"
+						Part.Size = Vector3.new(2048,0.01,2048)
+						Part.Anchored = true
+						Part.CanCollide = true
+						Part.Transparency = 1
+						Part.Position = game.Players.LocalPlayer.Character.HumanoidRootPart.Position - Vector3.new(0,3,0)
+
+					else
+
+						spawn(function()
+
+							game.Workspace:FindFirstChild("AntiFallPart"):Destroy()
+
+						end)
+
+					end
+
+				end,
+
+			},
+
+			{
+
+				Name = "Disable Bans",
+				Type = "Toggle",
+				Desc = "Some hacks wont work with this on. Or conveyors.",
+				Action = function(Value)
+
+					if Value == true then
+
+						local SavedPos = game.Players.LocalPlayer.Character.Torso.CFrame
+
+						EnableBans = false
+
+						spawn(function()
+
+							repeat
+
+								SavedPos = game.Players.LocalPlayer.Character.Torso.CFrame
+
+								local OldPos = game.Players.LocalPlayer.Character.Torso.Position
+
+								wait(0.05)
+
+								if (OldPos - game.Players.LocalPlayer.Character.Torso.Position).Magnitude - 0.5 > game.Players.LocalPlayer.Character.Humanoid.WalkSpeed then
+
+									game.Players.LocalPlayer.Character.Torso.CFrame = SavedPos
+
+								end
+
+							until EnableBans
+
+						end)
+
+					else
+
+						EnableBans = true
+
+					end
+
+				end,
+
+			},
+
+		}
+		
+	end,
+	
+	["1962086868"] = function ()
+
+		Commands = {
+
+			{
+
+				Name = "Speed",
+				Desc = "Set your speed to a useful amount.",
+				Type = "Metre",
+				Min = 16,
+				Max = 50,
+				Default = 16,
+				Action = function(Value)
+					
+					Plr.Character.Humanoid.WalkSpeed = Value
+					
+				end,
+
+			},
+			
+			{
+
+				Name = "Jump Power",
+				Desc = "457 is just enough to get to the top.",
+				Type = "Metre",
+				Min = 50,
+				Max = 457,
+				Default = 50,
+				Action = function(Value)
+
+					Plr.Character.Humanoid.JumpPower = Value
+
+				end,
+
+			},
+			
+			{
+
+				Type = "Split",
+
+			},
+			
+			{
+
+				Name = "Disable Lava",
+				Desc = "Turn lava into forcefield material and make it not hurt.",
+				Type = "Toggle",
+				Action = function(On)
+
+					if On then
+						
+						for _, Lava in game.Workspace:GetDescendants() do
+
+							if Lava:FindFirstChild("kills") and Lava:IsA("BasePart") then
+
+								Lava.Material = Enum.Material.ForceField
+								Lava.CanTouch = false
+
+							end
+
+						end
+						
+					else
+						
+						for _, Lava in game.Workspace:GetDescendants() do
+
+							if Lava:FindFirstChild("kills") and Lava:IsA("BasePart") then
+
+								Lava.Material = Enum.Material.Neon
+								Lava.CanTouch = true
+
+							end
+
+						end
+						
+					end
+
+				end,
+
+			},
+			
+		}
+
+	end,
+	
+}
+
+if Games[tostring(ID)] then
+
+	Games[tostring(ID)]()
+
+else
+
+	ShowPopup("3Hax (" .. game.PlaceId .. ")","This game does not yet have a hack. Open the menu to see all the hackable games. Click to join them.","Got it")
+	
+	Commands = {
+		
+		{
+
+			Name = "❓ LUCKY BLOCKS Battlegrounds",
+			Type = "Button",
+			Desc = "Id: 662417684",
+			Action = function()
+
+				local TeleportService = game:GetService("TeleportService")
+				local Id = 662417684
+
+				TeleportService:Teleport(Id, Plr)
+
+			end,
+
+		},
+		
+		{
+
+			Name = "Impossible Squid Game! Glass Bridge!",
+			Type = "Button",
+			Desc = "Id: 13987158269 (Good for trolling noobs)",
+			Action = function()
+
+				local TeleportService = game:GetService("TeleportService")
+				local Id = 13987158269
+
+				TeleportService:Teleport(Id, Plr)
+
+			end,
+
+		},
+		
+		{
+
+			Name = "☢️The 63 Infection",
+			Type = "Button",
+			Desc = "Id: 15980086096",
+			Action = function()
+
+				local TeleportService = game:GetService("TeleportService")
+				local Id = 15980086096
+
+				TeleportService:Teleport(Id, Plr)
+
+			end,
+
+		},
+		
+		{
+
+			Name = "Obby Creator",
+			Type = "Button",
+			Desc = "Id: 2913303231 (Has anticheat but these hacks dont mess with them)",
+			Action = function()
+
+				local TeleportService = game:GetService("TeleportService")
+				local Id = 2913303231
+
+				TeleportService:Teleport(Id, Plr)
+
+			end,
+
+		},
+		
+		{
+
+			Name = "Murder Mystery 2",
+			Type = "Button",
+			Desc = "Id: 142823291 (Has level 1 anticheat)",
+			Action = function()
+
+				local TeleportService = game:GetService("TeleportService")
+				local Id = 142823291
+
+				TeleportService:Teleport(Id, Plr)
+
+			end,
+
+		},
+		
+		{
+
+			Name = "Furry Infection game [Furinfection]",
+			Type = "Button",
+			Desc = "Id: 10679239752 (Has level 2 anticheat)",
+			Action = function()
+
+				local TeleportService = game:GetService("TeleportService")
+				local Id = 10679239752
+
+				TeleportService:Teleport(Id, Plr)
+
+			end,
+
+		},
+		
+	}
+	
+end
+
+-- Toggle
+
+Toggle.MouseButton1Click:Connect(function()
+
+	if not Open then
+
+		game.TweenService:Create(Icon,TweenInfo.new(0.5),{Rotation = 0}):Play()
+		game.TweenService:Create(Main,TweenInfo.new(0.4),{Position = UDim2.new(0, 0, 0.855, 0)}):Play()
+		Open = true
+
+	else
+
+		game.TweenService:Create(Icon,TweenInfo.new(0.5),{Rotation = 180}):Play()
+		game.TweenService:Create(Main,TweenInfo.new(0.4),{Position = UDim2.new(0,0,0.962,0)}):Play()
+		Open = false
+
+	end
+
+end)
+
+-- Setup
+
+print("Loaded " .. #Commands .. " hacks in " .. game.PlaceId .. ".")
+
+for _, Command in Commands do
+
+	if Command.Type == "Button" then
+
+		local Clone = Button:Clone()
+		
+		local Stroke = Instance.new("UIStroke",Clone)
+		
+		Stroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+		
+		Stroke.Color = Color3.new(1,1,1)
+		
+		Stroke.Thickness = 3
+		
+		Clone.Parent = Scroll
+
+		Clone.CommandName.Text = Command.Name
+
+		Clone.MouseEnter:Connect(function()
+
+			Description.Visible = true
+			Desc.Text = Command.Desc
+			game.TweenService:Create(Clone,TweenInfo.new(0.2),{BackgroundColor3 = Color3.new(0.211765, 0.211765, 0.211765)}):Play()
+
+		end)
+
+		Clone.MouseLeave:Connect(function()
+
+			Description.Visible = false
+			game.TweenService:Create(Clone,TweenInfo.new(0.2),{BackgroundColor3 = Color3.new(1, 1, 1)}):Play()
+
+		end)
+
+		Clone.MouseButton1Up:Connect(function()
+
+			local Circle = Instance.new("ImageLabel",Clone)
+			Circle.Size = UDim2.new(0,0,0,0)
+			Circle.AnchorPoint = Vector2.new(0.5,0.5)
+			Circle.ZIndex = 7
+			Circle.BackgroundTransparency = 1
+			Circle.Image = "http://www.roblox.com/asset/?id=6430908053"
+			Circle.BackgroundColor3 = Color3.new(1,1,1)
+			Circle.Position = UDim2.new(0, Mouse.X - Clone.AbsolutePosition.X, 0, Mouse.Y - Clone.AbsolutePosition.Y)
+
+			local Square = Instance.new("UIAspectRatioConstraint",Circle)
+			Square.DominantAxis = Enum.DominantAxis.Width
+
+			game.TweenService:Create(Circle,TweenInfo.new(1),{Size = UDim2.new(0, Clone.AbsoluteSize.X * 10, 0, Clone.AbsoluteSize.Y * 10),ImageTransparency = 1}):Play()
+
+			wait(1)
+
+			Circle:Destroy()
+
+		end)
+
+		Clone.MouseButton1Click:Connect(function()
+
+			Command.Action()
+
+		end)
+
+	end
+
+	if Command.Type == "Select" then
+
+		local Clone = Select:Clone()
+
+		Clone.Parent = Scroll
+
+		Clone.CommandName.Text = Command.Name
+		
+		local Stroke = Instance.new("UIStroke",Clone)
+
+		Stroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+
+		Stroke.Color = Color3.new(1,1,1)
+
+		Stroke.Thickness = 3
+		
+		local Options = Command.Options
+		local Pos = 1
+
+		Clone.Option.Text = Options[Pos]
+
+		Clone.MouseEnter:Connect(function()
+
+			game.TweenService:Create(Clone,TweenInfo.new(0.2),{BackgroundColor3 = Color3.new(0.211765, 0.211765, 0.211765)}):Play()
+			Description.Visible = true
+			Desc.Text = Command.Desc
+
+		end)
+
+		Clone.MouseLeave:Connect(function()
+
+			game.TweenService:Create(Clone,TweenInfo.new(0.2),{BackgroundColor3 = Color3.new(0.329412, 0.329412, 0.329412)}):Play()
+			Description.Visible = false
+
+		end)
+
+		Clone.MouseButton1Down:Connect(function()
+
+			game.TweenService:Create(Clone,TweenInfo.new(0.03,Enum.EasingStyle.Sine,Enum.EasingDirection.Out),{BackgroundColor3 = Color3.new(0.407843, 0.407843, 0.407843)}):Play()
+
+		end)
+
+		Clone.MouseButton1Up:Connect(function()
+
+			game.TweenService:Create(Clone,TweenInfo.new(0.05),{BackgroundColor3 = Color3.new(0.211765, 0.211765, 0.211765)}):Play()
+
+		end)
+
+		Clone.MouseButton1Click:Connect(function()
+
+			Pos += 1
+
+			if Pos == #Options + 1 then
+
+				Pos = 1
+
+			end
+
+			local Value1 = tonumber(#tostring(Clone.Option.Text))
+
+			Clone.Option.MaxVisibleGraphemes = #Clone.Option.Text
+
+			game.TweenService:Create(Clone.Option,TweenInfo.new(0.1,Enum.EasingStyle.Sine,Enum.EasingDirection.In),{MaxVisibleGraphemes = 0}):Play()
+
+			wait(0.1)
+
+			Clone.Option.Text = Options[Pos]
+
+			game.TweenService:Create(Clone.Option,TweenInfo.new(0.1,Enum.EasingStyle.Sine,Enum.EasingDirection.Out),{MaxVisibleGraphemes = #Clone.Option.Text}):Play()
+
+			Command.Action(Options[Pos])
+
+		end)
+
+	end
+
+	if Command.Type == "Toggle" then
+
+		local Clone = ToggleButton:Clone()
+
+		local On = false
+
+		Clone.Parent = Scroll
+		
+		local Stroke = Instance.new("UIStroke",Clone)
+
+		Stroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+
+		Stroke.Color = Color3.new(1,1,1)
+
+		Stroke.Thickness = 3
+
+		Clone.CommandName.Text = Command.Name
+
+		Clone.MouseEnter:Connect(function()
+
+			Description.Visible = true
+			Desc.Text = Command.Desc
+
+		end)
+
+		Clone.MouseLeave:Connect(function()
+
+			Description.Visible = false
+
+		end)
+
+		Clone.MouseButton1Down:Connect(function()
+
+			On = not On
+
+			Command.Action(On)
+
+			if not On then
+
+				game.TweenService:Create(Clone,TweenInfo.new(0.3,Enum.EasingStyle.Sine,Enum.EasingDirection.Out),{BackgroundTransparency = 1}):Play()
+
+			end
+
+			if On then
+
+				game.TweenService:Create(Clone,TweenInfo.new(0.3,Enum.EasingStyle.Sine,Enum.EasingDirection.Out),{BackgroundTransparency = 0.5}):Play()
+
+			end
+
+		end)
+
+	end
+
+	if Command.Type == "Split" then
+
+		local Clone = Split:Clone()
+
+		Clone.Parent = Scroll
+
+	end
+
+	if Command.Type == "Metre" then
+
+		local Down = false
+
+		local function Convert(Scale)
+			local ViewPortSize = workspace.Camera.ViewportSize
+			return (ViewPortSize.X * Scale)
+		end
+
+		local Value = Command.Default
+
+		local Clone = Metre:Clone()
+		Clone.Parent = Scroll
+		Clone.CommandName.Text = Command.Name
+		
+		local Stroke = Instance.new("UIStroke",Clone)
+
+		Stroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+
+		Stroke.Color = Color3.new(1,1,1)
+
+		Stroke.Thickness = 3
+		
+		local BarValue = (Value - Command.Min) / (Command.Min - Command.Max)
+
+		BarValue = math.clamp(-BarValue,0,1)
+
+		Clone.Bar.Size = UDim2.new(BarValue,0,1,0)
+
+		Clone.Editor.Text = Value
+
+		local Mouse = game.Players.LocalPlayer:GetMouse()
+
+		Clone.MouseEnter:Connect(function()
+
+			Description.Visible = true
+			Desc.Text = Command.Desc
+
+		end)
+
+		Clone.MouseLeave:Connect(function()
+
+			Description.Visible = false
+
+		end)
+
+		Clone.MouseButton1Down:Connect(function()
+
+			Down = true
+			repeat
+
+				wait(0.01)
+
+				Value = ((Mouse.X - Clone.AbsolutePosition.X) / Clone.AbsoluteSize.X) * Command.Max
+
+				Value = math.clamp(Value,Command.Min,Command.Max)
+
+				local BarValue = (Value - Command.Min) / (Command.Min - Command.Max) 
+
+				Clone.Bar.Size = UDim2.new(-BarValue,0,1,0)
+
+			until not Down
+
+		end)
+
+		Clone.Editor.FocusLost:Connect(function()
+
+			if tonumber(Clone.Editor.Text) ~= nil then
+
+				Value = tonumber(Clone.Editor.Text)
+
+				Clone.Editor.Text = string.sub(tostring(Value),0,#tostring(math.round(Value)) + 3)
+
+				Command.Action(string.sub(tostring(Value),0,#tostring(math.round(Value)) + 3))
+
+				local BarValue = (Value - Command.Min) / (Command.Min - Command.Max)
+
+				BarValue = math.clamp(-BarValue,0,1)
+
+				Clone.Bar.Size = UDim2.new(math.random(0,100) / 100,0,1,0)
+
+				Clone.Bar.Size = UDim2.new(BarValue,0,1,0)
+
+			else
+
+				Clone.Editor.Text = Value
+
+			end
+
+		end)
+
+		Clone.Bar.Changed:Connect(function(Property)
+
+			if Property == "Size" then
+
+				Clone.Editor.Text = string.sub(tostring(Value),0,#tostring(math.round(Value)) + 3)
+				Command.Action(string.sub(tostring(Value),0,#tostring(math.round(Value)) + 3))
+
+			end
+
+		end)
+
+		game:GetService("UserInputService").InputEnded:Connect(function(Input)
+
+			if Input.UserInputType == Enum.UserInputType.MouseButton1 then
+
+				Down = false
+
+			end
+
+		end)
+
+	end
+
+end
+
+-- Description
+
+game:GetService("RunService").RenderStepped:Connect(function()
+
+	Description.Position = UDim2.new(-0.096,Mouse.X,0.65,0)
+	
+end)
