@@ -1,13 +1,13 @@
 if game.CoreGui:FindFirstChild("3Hax") then
-	
+
 	game.TweenService:Create(game.CoreGui:FindFirstChild("3Hax").Menu,TweenInfo.new(0.5),{BackgroundTransparency = 1,Position = UDim2.new(0,0,0.962,0)}):Play()
 	game.TweenService:Create(game.CoreGui:FindFirstChild("3Hax").Menu.Toggle,TweenInfo.new(0.5),{Position = UDim2.new(0.475, 0, 0.5, 0)}):Play()
 	game.TweenService:Create(game.CoreGui:FindFirstChild("3Hax").Menu.Toggle.Icon,TweenInfo.new(0.5),{ImageTransparency = 1}):Play()
-	
+
 	wait(0.5)
-	
+
 	game.CoreGui:FindFirstChild("3Hax"):Destroy()
-	
+
 end
 
 local Admin = Instance.new("ScreenGui", game.CoreGui)
@@ -616,7 +616,7 @@ local Games = {
 	["142823291"] = function ()
 
 		Commands = {
-			
+
 			{
 
 				Name = "Show Roles",
@@ -837,11 +837,11 @@ local Games = {
 				end,
 
 			},
-			
+
 		}
 
 	end,
-	
+
 	["662417684"] = function ()
 
 		local Opening = false
@@ -962,9 +962,9 @@ local Games = {
 		}
 
 	end,
-	
+
 	["15980086096"] = function ()
-		
+
 		local OldPos = CFrame.new()
 
 		local Untouchable = false
@@ -1411,11 +1411,11 @@ local Games = {
 			},
 
 		}
-		
+
 	end,
-	
+
 	["10679239752"] = function ()
-		
+
 		local Speed = 16
 		local UsingSpeed = false
 		local SpeedWarn = false
@@ -1720,11 +1720,11 @@ local Games = {
 			},
 
 		}
-		
+
 	end,
-	
+
 	["13987158269"] = function ()
-		
+
 		local Immortal = false
 		local Reveal = false
 		local AutoWin = false
@@ -1982,11 +1982,11 @@ local Games = {
 			},
 
 		}
-		
+
 	end,
-	
+
 	["2913303231"] = function ()
-		
+
 		local EnableConveyors = true
 		local EnableBans = true
 
@@ -2326,11 +2326,13 @@ local Games = {
 			},
 
 		}
-		
-	end,
-	
-	["1962086868"] = function ()
 
+	end,
+
+	["1962086868"] = function ()
+		
+		local Hitboxes = Instance.new("Folder",nil)
+		
 		Commands = {
 
 			{
@@ -2342,13 +2344,13 @@ local Games = {
 				Max = 50,
 				Default = 16,
 				Action = function(Value)
-					
+
 					Plr.Character.Humanoid.WalkSpeed = Value
-					
+
 				end,
 
 			},
-			
+
 			{
 
 				Name = "Jump Power",
@@ -2364,6 +2366,39 @@ local Games = {
 				end,
 
 			},
+
+			{
+
+				Name = "God",
+				Desc = "Remove your hitbox and makes you immortal. (Use this to use teleports)",
+				Type = "Toggle",
+				Action = function(On)
+
+					if On then
+
+						for _, Thing in Plr.Character:GetChildren() do
+
+							if Thing.Name == "hitbox" then
+								
+								Thing.Parent = Hitboxes
+								
+							end
+
+						end
+
+					else
+
+						for _, Thing in Hitboxes:GetChildren() do
+
+							Thing.Parent = Plr.Character
+
+						end
+
+					end
+
+				end,
+
+			},
 			
 			{
 
@@ -2373,38 +2408,29 @@ local Games = {
 			
 			{
 
-				Name = "Disable Lava",
-				Desc = "Turn lava into forcefield material and make it not hurt.",
-				Type = "Toggle",
-				Action = function(On)
+				Name = "To End",
+				Desc = "Please use disable hitbox so the game dont kill you.",
+				Type = "Button",
+				Action = function()
 
-					if On then
-						
-						for _, Lava in game.Workspace:GetDescendants() do
+					local Pos = workspace.tower.sections.finish.exit.carpet.Position + Vector3.new(0,5,0)
+					
+					game.TweenService:Create(Plr.Character.HumanoidRootPart,TweenInfo.new(0),{CFrame = CFrame.new(Pos)}):Play()
+					
+				end,
 
-							if Lava:FindFirstChild("kills") and Lava:IsA("BasePart") then
+			},
+			
+			{
 
-								Lava.Material = Enum.Material.ForceField
-								Lava.CanTouch = false
+				Name = "To Beginning",
+				Desc = "Please use disable hitbox so the game dont kill you.",
+				Type = "Button",
+				Action = function()
 
-							end
+					local Pos = workspace.tower.sections.lobby.center.Position
 
-						end
-						
-					else
-						
-						for _, Lava in game.Workspace:GetDescendants() do
-
-							if Lava:FindFirstChild("kills") and Lava:IsA("BasePart") then
-
-								Lava.Material = Enum.Material.Neon
-								Lava.CanTouch = true
-
-							end
-
-						end
-						
-					end
+					game.TweenService:Create(Plr.Character.HumanoidRootPart,TweenInfo.new(0),{CFrame = CFrame.new(Pos)}):Play()
 
 				end,
 
@@ -2413,7 +2439,7 @@ local Games = {
 		}
 
 	end,
-	
+
 }
 
 if Games[tostring(ID)] then
@@ -2423,9 +2449,9 @@ if Games[tostring(ID)] then
 else
 
 	ShowPopup("3Hax (" .. game.PlaceId .. ")","This game does not yet have a hack. Open the menu to see all the hackable games. Click to join them.","Got it")
-	
+
 	Commands = {
-		
+
 		{
 
 			Name = "❓ LUCKY BLOCKS Battlegrounds",
@@ -2441,7 +2467,7 @@ else
 			end,
 
 		},
-		
+
 		{
 
 			Name = "Impossible Squid Game! Glass Bridge!",
@@ -2457,7 +2483,7 @@ else
 			end,
 
 		},
-		
+
 		{
 
 			Name = "☢️The 63 Infection",
@@ -2473,7 +2499,7 @@ else
 			end,
 
 		},
-		
+
 		{
 
 			Name = "Obby Creator",
@@ -2489,7 +2515,7 @@ else
 			end,
 
 		},
-		
+
 		{
 
 			Name = "Murder Mystery 2",
@@ -2505,7 +2531,7 @@ else
 			end,
 
 		},
-		
+
 		{
 
 			Name = "Furry Infection game [Furinfection]",
@@ -2522,8 +2548,24 @@ else
 
 		},
 		
+		{
+
+			Name = "Tower of hell",
+			Type = "Button",
+			Desc = "Id: 1962086868 (Has level 3 anticheat and you can be banned but only 7 days)",
+			Action = function()
+
+				local TeleportService = game:GetService("TeleportService")
+				local Id = 1962086868
+
+				TeleportService:Teleport(Id, Plr)
+
+			end,
+
+		},
+		
 	}
-	
+
 end
 
 -- Toggle
@@ -2555,15 +2597,15 @@ for _, Command in Commands do
 	if Command.Type == "Button" then
 
 		local Clone = Button:Clone()
-		
+
 		local Stroke = Instance.new("UIStroke",Clone)
-		
+
 		Stroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-		
+
 		Stroke.Color = Color3.new(1,1,1)
-		
+
 		Stroke.Thickness = 3
-		
+
 		Clone.Parent = Scroll
 
 		Clone.CommandName.Text = Command.Name
@@ -2620,7 +2662,7 @@ for _, Command in Commands do
 		Clone.Parent = Scroll
 
 		Clone.CommandName.Text = Command.Name
-		
+
 		local Stroke = Instance.new("UIStroke",Clone)
 
 		Stroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
@@ -2628,7 +2670,7 @@ for _, Command in Commands do
 		Stroke.Color = Color3.new(1,1,1)
 
 		Stroke.Thickness = 3
-		
+
 		local Options = Command.Options
 		local Pos = 1
 
@@ -2696,7 +2738,7 @@ for _, Command in Commands do
 		local On = false
 
 		Clone.Parent = Scroll
-		
+
 		local Stroke = Instance.new("UIStroke",Clone)
 
 		Stroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
@@ -2764,7 +2806,7 @@ for _, Command in Commands do
 		local Clone = Metre:Clone()
 		Clone.Parent = Scroll
 		Clone.CommandName.Text = Command.Name
-		
+
 		local Stroke = Instance.new("UIStroke",Clone)
 
 		Stroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
@@ -2772,7 +2814,7 @@ for _, Command in Commands do
 		Stroke.Color = Color3.new(1,1,1)
 
 		Stroke.Thickness = 3
-		
+
 		local BarValue = (Value - Command.Min) / (Command.Min - Command.Max)
 
 		BarValue = math.clamp(-BarValue,0,1)
@@ -2871,5 +2913,5 @@ end
 game:GetService("RunService").RenderStepped:Connect(function()
 
 	Description.Position = UDim2.new(-0.096,Mouse.X,0.65,0)
-	
+
 end)
