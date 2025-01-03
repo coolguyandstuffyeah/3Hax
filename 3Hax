@@ -614,7 +614,15 @@ end)
 local Games = {
 
 	["142823291"] = function ()
+		
+		local Gun = false
+		local Coins = false
+		local Stab = false
+		
+		local Found = nil
 
+		local Best = math.huge
+		
 		Commands = {
 
 			{
@@ -623,7 +631,9 @@ local Games = {
 				Type = "Button",
 				Desc = "Shows you the roles of everybody",
 				Action = function(On)
-
+					
+					local GotMurderer = false
+					
 					for _, Thing in game.Players:GetPlayers() do
 
 						local Highlight = Instance.new("Highlight",Thing.Character)
@@ -643,6 +653,7 @@ local Games = {
 						if Thing.Backpack:FindFirstChild("Knife") or Thing.Character:FindFirstChild("Knife") then
 
 							Highlight.OutlineColor = Color3.new(1,0,0)
+							GotMurderer = true
 
 						end
 
@@ -653,7 +664,64 @@ local Games = {
 						end
 
 					end
+					
+					if not GotMurderer then
+						
+						ShowPopup("Roles","Please wait until a round has started.","Ok")
+						
+					end
+				end,
 
+			},
+			
+			{
+
+				Name = "Fake Knife",
+				Type = "Button",
+				Desc = "Gives you an item to make it look like your holding a knife.",
+				Action = function(On)
+					
+					local FakeKnife = Instance.new("Tool", Plr.Backpack)
+
+					FakeKnife.CanBeDropped = false
+					FakeKnife.Name = "Knife?"
+					FakeKnife.TextureId = "rbxassetid://13298102229"
+					FakeKnife.ToolTip = 'Click to "Swing"'
+
+					local Handle = Instance.new("Part", FakeKnife)
+
+					Handle.CanCollide = false
+					Handle.Name = "Handle"
+					Handle.Size = Vector3.new(0.001, 0.001, 0.001)
+					Handle.Transparency = 1
+					
+					FakeKnife.Activated:Connect(function()
+						
+						local Animation = Instance.new("Animation",Plr.Character)
+						Animation.Name = "FakeSwing"
+						
+						if math.random(1,2) == 1 then
+							
+							Animation.AnimationId = "rbxassetid://1957890538"
+							
+						else
+							
+							Animation.AnimationId = "rbxassetid://2467567750"
+							
+						end
+						
+						local Track = Plr.Character.Humanoid:LoadAnimation(Animation)
+						
+						Track:Play()
+						
+						FakeKnife.Enabled = false
+						
+						wait(1)
+						
+						FakeKnife.Enabled = true
+						
+					end)
+					
 				end,
 
 			},
@@ -662,8 +730,8 @@ local Games = {
 
 				Type = "Split",
 
-			},
-
+			},	
+			
 			{
 
 				Name = "To Innocent",
@@ -726,7 +794,7 @@ local Games = {
 
 					if Sheriff == nil then
 
-						ShowPopup("Teleport","The round hasnt started yet or people haven't got their items.","Ok")
+						ShowPopup("Teleport","There is no sheriff right now.","Ok")
 
 					else
 
@@ -759,7 +827,7 @@ local Games = {
 
 					if Murderer == nil then
 
-						ShowPopup("Teleport","The round hasnt started yet or people haven't got their items.","Ok")
+						ShowPopup("Teleport","There is no murderer yet.","Ok")
 
 					else
 
@@ -773,39 +841,9 @@ local Games = {
 
 			{
 
-				Type = "Split",
-
-			},
-
-			{
-
-				Name = "Goto Coin",
+				Name = "To Lobby",
 				Type = "Button",
-				Desc = "Goto a coin. (Changed to only going to 1 coin since going to multiple activates anticheat)",
-				Action = function(On)
-
-					for _, Thing in game.Workspace:GetDescendants() do
-
-						if Thing.Name == "CoinVisual" and Thing:IsA("BasePart") then
-
-							game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = Thing.CFrame
-							return
-
-						end
-
-					end
-
-					ShowPopup("Teleport","Theres no coins on the map.","Oh")
-
-				end,
-
-			},
-
-			{
-
-				Name = "Goto Lobby",
-				Type = "Button",
-				Desc = "Goto the lobby. Good for innocent.",
+				Desc = "Goto the lobby. Good for afking.",
 				Action = function(On)
 
 					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-107.900009, 146.830475, 22.3888321, 1, 0, 0, 0, 1, 0, 0, 0, 1)
@@ -813,31 +851,164 @@ local Games = {
 				end,
 
 			},
-
+			
 			{
 
-				Name = "Goto Sheriff Gun (If Dropped)",
-				Type = "Button",
-				Desc = "Goto the dropped gun.",
+				Type = "Split",
+
+			},
+			
+			{
+
+				Name = "Auto Sheriff Gun",
+				Type = "Toggle",
+				Desc = "Automatically teleport to the gun when its dropped.",
 				Action = function(On)
 
-					for _, Thing in game.Workspace:GetDescendants() do
+					if On then
+						
+						Gun = true
+						
+						spawn(function()
+							
+							while Gun do
 
-						if Thing.Name == "GunDrop" and Thing:IsA("BasePart") then
+								task.wait(1)
 
-							game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = Thing.CFrame
-							return
+								for _, Thing in game.Workspace:GetDescendants() do
 
-						end
+									if Thing.Name == "GunDrop" and Thing:IsA("BasePart") then
 
+										game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = Thing.CFrame
+
+									end
+
+								end
+
+							end
+							
+						end)
+						
+					else
+						
+						Gun = false
+						
 					end
-
-					ShowPopup("Teleport","The gun is not dropped.","Oh")
 
 				end,
 
 			},
+			
+			{
 
+				Name = "Auto Coin",
+				Type = "Toggle",
+				Desc = "Automatically tween to every coin.",
+				Action = function(On)
+
+					if On then
+
+						Coins = true
+						
+						local Move = Instance.new("BodyVelocity",Plr.Character.HumanoidRootPart)
+						
+						local function NoclipLoop()
+							
+							Plr.Character.Humanoid.Sit = true
+							for _, Limb in Plr.Character:GetDescendants() do
+								if Limb:IsA("BasePart") and Limb.CanCollide == true then
+									Limb.CanCollide = false
+								end
+							end
+
+						end
+						
+						local Noclipping = game["Run Service"].Stepped:Connect(NoclipLoop)
+						
+						spawn(function()
+							
+							Coins = true
+							
+							local Part = Instance.new("Part")
+							Part.Anchored = true
+							local High = Instance.new("Highlight",Part)
+							
+							while Coins do
+								
+								task.wait(0.2)
+
+								for _, Thing in game.Workspace:GetDescendants() do
+									
+									if not Thing:IsA("BasePart") then
+										
+										continue
+										
+									end
+									
+									if Thing.Transparency == 1 then
+										
+										continue
+										
+									end
+									
+									if Thing.Transparency ~= 0 then
+										
+										continue
+										
+									end
+									
+									if Thing.Name == "CoinVisual" and Thing.Transparency == 0 and Thing.Transparency ~= 1 and Thing:IsA("BasePart") then
+
+										if (Thing.Position - Plr.Character:FindFirstChild("HumanoidRootPart").Position).Magnitude < Best then
+
+											Best = (Thing.Position - Plr.Character:FindFirstChild("HumanoidRootPart").Position).Magnitude
+											Found = Thing
+
+										end
+
+									end
+
+								end
+								
+								Part.Parent = game.Workspace
+								Part.Position = Found.Position
+								
+								Move.Velocity = (Found.Position - Plr.Character.HumanoidRootPart.Position).Unit * 35
+
+								repeat
+
+									wait(0.2)
+									Move.Velocity = (Found.Position - Plr.Character.HumanoidRootPart.Position).Unit * 35
+									
+									if Coins == false then
+										
+										Noclipping:Disconnect()
+										Move:Destroy()
+										Plr.Character.Humanoid.Sit = false
+										return
+										
+									end
+									
+								until Found.Transparency ~= 0 or Found == nil
+
+							end
+							
+							Noclipping:Disconnect()
+							Move:Destroy()
+							Plr.Character.Humanoid.Sit = false
+							
+						end)
+
+					else
+
+						Coins = false
+						
+					end
+
+				end,
+
+			},
+			
 		}
 
 	end,
@@ -2439,7 +2610,178 @@ local Games = {
 		}
 
 	end,
+	
+	["4448566543"] = function ()
+		
+		Commands = {
 
+			{
+
+				Name = "Show Roles",
+				Type = "Button",
+				Desc = "Shows you the roles of everybody",
+				Action = function(On)
+
+					for _, Thing in game.Players:GetPlayers() do
+
+						local Highlight = Instance.new("Highlight",Thing.Character)
+
+						Highlight.FillTransparency = 1
+
+						if Thing.Character:FindFirstChild("PlayerHighlightType") then
+
+							Thing.Character:FindFirstChild("PlayerHighlightType"):Destroy()
+
+						end
+
+						Highlight.Name = "PlayerHighlightType"
+
+						Highlight.OutlineColor = Color3.new(1,1,1)
+
+						if Thing.Character:FindFirstChild("Hitbox") then
+							
+							if game.Workspace.GameBananas:FindFirstChild(Thing.Name):FindFirstChildOfClass("Model"):FindFirstChild("PlayerHighlightType") then
+								
+								game.Workspace.GameBananas:FindFirstChild(Thing.Name):FindFirstChildOfClass("Model"):FindFirstChild("PlayerHighlightType"):Destroy()
+								
+							end
+							
+							Highlight.Parent = game.Workspace.GameBananas:FindFirstChild(Thing.Name):FindFirstChildOfClass("Model")
+							Highlight.OutlineColor = Color3.new(1,1,0)
+							
+						end
+
+					end
+
+				end,
+
+			},
+			
+			{
+
+				Name = "Show Puzzles",
+				Type = "Button",
+				Desc = "Shows you all the puzzles, and the cake pieces.",
+				Action = function(On)
+
+					for _, Thing in workspace.GameKeeper.Puzzles:GetChildren() do
+
+						local Highlight = Instance.new("Highlight",Thing)
+
+						Highlight.FillTransparency = 1
+
+						if Thing:FindFirstChild("PuzzleHighlight") then
+
+							Thing:FindFirstChild("PuzzleHighlight"):Destroy()
+
+						end
+
+						Highlight.Name = "PuzzleHighlight"
+
+						Highlight.OutlineColor = Color3.new(0,0.6,1)
+
+					end
+					
+					for _, Thing in workspace.GameKeeper.Map.Items:GetChildren() do
+
+						if Thing.Name == "CakePlate" then
+							
+							local Highlight = Instance.new("Highlight",Thing)
+
+							Highlight.FillTransparency = 1
+
+							if Thing:FindFirstChild("PuzzleHighlight") then
+
+								Thing:FindFirstChild("PuzzleHighlight"):Destroy()
+
+							end
+
+							Highlight.Name = "PuzzleHighlight"
+
+							Highlight.OutlineColor = Color3.new(1,0,1)
+							
+						end
+
+					end
+					
+				end,
+
+			},
+			
+			{
+
+				Name = "Show Other",
+				Type = "Button",
+				Desc = "Shows you everything else. Like presents, pumpkins and coins.",
+				Action = function(On)
+
+					for _, Thing in workspace.GameKeeper.Puzzles:GetChildren() do
+
+						local Highlight = Instance.new("Highlight",Thing)
+
+						Highlight.FillTransparency = 1
+
+						if Thing:FindFirstChild("PuzzleHighlight") then
+
+							Thing:FindFirstChild("PuzzleHighlight"):Destroy()
+
+						end
+
+						Highlight.Name = "PuzzleHighlight"
+
+						Highlight.OutlineColor = Color3.new(0,0.6,1)
+
+					end
+
+					for _, Thing in workspace.GameKeeper.Map.Items:GetChildren() do
+
+						if Thing.Name == "CakePlate" then
+
+							local Highlight = Instance.new("Highlight",Thing)
+
+							Highlight.FillTransparency = 1
+
+							if Thing:FindFirstChild("PuzzleHighlight") then
+
+								Thing:FindFirstChild("PuzzleHighlight"):Destroy()
+
+							end
+
+							Highlight.Name = "PuzzleHighlight"
+
+							Highlight.OutlineColor = Color3.new(1,0,1)
+
+						end
+
+					end
+
+				end,
+
+			},
+			
+			{
+
+				Type = "Split",
+
+			},
+			
+			{
+
+				Name = "Hide Loading UI",
+				Type = "Button",
+				Desc = "Hides the annoying loading ui.",
+				Action = function(On)
+
+					game.Players.LocalPlayer.PlayerGui.LoadingGui.Enabled = false
+
+				end,
+
+			},
+			
+		}
+
+	end,
+	
 }
 
 if Games[tostring(ID)] then
