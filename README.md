@@ -16,4 +16,4 @@ loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/coolguyandstuffy
 
 # Credits
 
-If you dont credit me and use something unique I have on my script hub, **I will make not open source**.
+If you dont credit me and use something unique I have on my script hub, **I will make it not open source**.
