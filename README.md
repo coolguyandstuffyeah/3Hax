@@ -1,6 +1,6 @@
 # Intro
 
-3Hax is a roblox script hub made fully by me (probably) and **NO UNC** to use.
+3Hax is a roblox script hub made fully by me (probably) and needs barly any UNC to use.
 
 Theres no viruses or anything because I dont really know why I would do that in the first place
 
