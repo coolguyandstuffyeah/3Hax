@@ -1,96 +1,178 @@
+-- Check
+
 if game.CoreGui:FindFirstChild("3Hax") then
 
-	game.TweenService:Create(game.CoreGui:FindFirstChild("3Hax").Menu,TweenInfo.new(0.5),{BackgroundTransparency = 1,Position = UDim2.new(0,0,0.962,0)}):Play()
-	game.TweenService:Create(game.CoreGui:FindFirstChild("3Hax").Menu.Toggle,TweenInfo.new(0.5),{Position = UDim2.new(0.475, 0, 0.5, 0)}):Play()
-	game.TweenService:Create(game.CoreGui:FindFirstChild("3Hax").Menu.Toggle.Icon,TweenInfo.new(0.5),{ImageTransparency = 1}):Play()
+	for _, Frame in game.CoreGui:FindFirstChild("3Hax"):GetChildren() do
 
-	wait(0.5)
+		if Frame:IsA("Frame") then
+
+			game.TweenService:Create(Frame,TweenInfo.new(0.3),{Size = UDim2.new(0,0,0,0)}):Play()
+
+		end
+
+	end
+
+	wait(0.3)
 
 	game.CoreGui:FindFirstChild("3Hax"):Destroy()
 
+	wait(0.3)
+
 end
 
-local Admin = Instance.new("ScreenGui", game.CoreGui)
+-- Gui
 
-Admin.DisplayOrder = 1999999999
-Admin.IgnoreGuiInset = true
-Admin.Name = "3Hax"
-Admin.ResetOnSpawn = false
+local UI = Instance.new("ScreenGui", game.CoreGui)
 
-local Main = Instance.new("Frame", Admin)
+UI.Name = "3Hax"
+UI.IgnoreGuiInset = true
+UI.DisplayOrder = 1999999999
+UI.ResetOnSpawn = false
 
-Main.BackgroundColor3 = Color3.new(0, 0, 0)
-Main.BackgroundTransparency = 1
-Main.BorderColor3 = Color3.new(1, 1, 1)
-Main.BorderSizePixel = 0
-Main.Name = "Menu"
-Main.Position = UDim2.new(0, 0, 0.962, 0)
-Main.Size = UDim2.new(1, 0, 0.15, 0)
+local Background = Instance.new("Frame", UI)
 
-local Gradient = Instance.new("UIGradient", Main)
+Background.BackgroundColor3 = Color3.new(0, 0, 0)
+Background.BackgroundTransparency = 0.5
+Background.Name = "Background"
+Background.Position = UDim2.new(0.63, 0, 0.52, 0)
+Background.Size = UDim2.new(0,0,0,0)
 
-Gradient.Transparency = NumberSequence.new({NumberSequenceKeypoint.new(0,0,0),NumberSequenceKeypoint.new(0.8,0,0),NumberSequenceKeypoint.new(1,1,0)})
-Gradient.Rotation = -90
+local Corner = Instance.new("UICorner", Background)
 
-local Toggle = Instance.new("ImageButton", Main)
+Corner.CornerRadius = UDim.new(0.05,0)
 
-Toggle.BackgroundColor3 = Color3.new(0.105882, 0.105882, 0.105882)
-Toggle.Name = "Toggle"
-Toggle.Active = false
-Toggle.Position = UDim2.new(0.475, 0, 0.5, 0)
-Toggle.Rotation = 0
-Toggle.BackgroundTransparency = 1
-Toggle.Size = UDim2.new(0.05, 0, 0.45, 0)
+local Stroke = Instance.new("UIStroke", Background)
 
-local Icon = Instance.new("ImageLabel", Toggle)
+Stroke.Thickness = 2
+Stroke.Color = Color3.new(1,1,1)
 
-Icon.BackgroundColor3 = Color3.new(1, 1, 1)
-Icon.BackgroundTransparency = 1
-Icon.BorderColor3 = Color3.new(0, 0, 0)
-Icon.BorderSizePixel = 0
-Icon.Image = "rbxassetid://878102417"
-Icon.Name = "Icon"
-Icon.Active = false
-Icon.Position = UDim2.new(0, 0, -0.0500000007, 0)
-Icon.Rotation = 180
-Icon.ScaleType = Enum.ScaleType.Fit
-Icon.Size = UDim2.new(1, 0, 1, 0)
-Icon.ZIndex = 2
+local Title = Instance.new("TextLabel", Background)
 
-local Scroll = Instance.new("ScrollingFrame", Main)
+Title.BackgroundColor3 = Color3.new(1, 1, 1)
+Title.BackgroundTransparency = 1
+Title.BorderColor3 = Color3.new(0, 0, 0)
+Title.BorderSizePixel = 0
+Title.Font = Enum.Font.TitilliumWeb
+Title.Name = "Title"
+Title.Size = UDim2.new(1, 0, 0.11, 0)
+Title.Text = "3Hax"
+Title.TextColor3 = Color3.new(1, 1, 1)
+Title.TextScaled = true
+Title.TextSize = 14
+Title.TextStrokeTransparency = 0
+Title.TextWrapped = true
+
+local Split = Instance.new("Frame", Background)
+
+Split.BackgroundColor3 = Color3.new(1, 1, 1)
+Split.BackgroundTransparency = 0
+Split.BorderSizePixel = 0
+Split.Name = "Split"
+Split.Position = UDim2.new(0.032, 0,0.109, 0)
+Split.Size = UDim2.new(0.935, 0,0, 1)
+
+local Scroll = Instance.new("ScrollingFrame", Background)
 
 Scroll.Active = true
 Scroll.BackgroundColor3 = Color3.new(1, 1, 1)
 Scroll.BackgroundTransparency = 1
-Scroll.BorderColor3 = Color3.new(0, 0, 0)
-Scroll.BorderSizePixel = 0
-Scroll.CanvasSize = UDim2.new(1, 0, 0, 0)
+Scroll.CanvasSize = UDim2.new(0, 0, 0, 0)
 Scroll.Name = "Scroll"
+Scroll.Position = UDim2.new(0.065, 0, 0.16, 0)
+Scroll.ScrollBarThickness = 1
 Scroll.AutomaticCanvasSize = Enum.AutomaticSize.XY
-Scroll.Position = UDim2.new(0.00499999989, 0, 0.2, 0)
-Scroll.ScrollBarImageTransparency = 0.4000000059604645
-Scroll.ScrollBarThickness = 0
-Scroll.Size = UDim2.new(1, 0, 0.8, 0)
-Scroll.ZIndex = 4
-Scroll.ClipsDescendants = false
+Scroll.Size = UDim2.new(0.868, 0, 0.765, 0)
 
-local Select = Instance.new("ImageButton", nil)
+local List = Instance.new("UIListLayout", Scroll)
 
-Select.BackgroundColor3 = Color3.new(1, 1, 1)
+List.HorizontalAlignment = Enum.HorizontalAlignment.Center
+List.Name = "List"
+List.Padding = UDim.new(0, game.Workspace.CurrentCamera.ViewportSize.Y * 0.005)
+List.SortOrder = Enum.SortOrder.LayoutOrder
+
+local Text = Instance.new("TextLabel", nil)
+
+Text.BackgroundColor3 = Color3.new(1, 1, 1)
+Text.BackgroundTransparency = 1
+Text.BorderColor3 = Color3.new(0, 0, 0)
+Text.BorderSizePixel = 0
+Text.Font = Enum.Font.TitilliumWeb
+Text.Name = "Text"
+Text.Position = UDim2.new(0, 0, 1.51262796e-07, 0)
+Text.Size = UDim2.new(0.99, 0,0.095, 0)
+Text.Text = "Text"
+Text.TextColor3 = Color3.new(1, 1, 1)
+Text.TextScaled = true
+Text.TextSize = 14
+Text.TextStrokeTransparency = 0
+Text.TextWrapped = true
+
+local CmdSplit = Instance.new("Frame", nil)
+
+CmdSplit.BackgroundColor3 = Color3.new(1, 1, 1)
+CmdSplit.BackgroundTransparency = 0.30000001192092896
+CmdSplit.BorderColor3 = Color3.new(0, 0, 0)
+CmdSplit.BorderSizePixel = 0
+CmdSplit.Name = "Split"
+CmdSplit.Position = UDim2.new(0.0653301701, 0, 0.112627961, 0)
+CmdSplit.Size = UDim2.new(0.221, 0,0, 1)
+
+local Button = Instance.new("TextButton", nil)
+
+Button.AutoButtonColor = false
+Button.BackgroundColor3 = Color3.new(0, 0, 0)
+Button.BackgroundTransparency = 0.5
+Button.BorderColor3 = Color3.new(0, 0, 0)
+Button.BorderSizePixel = 0
+Button.ClipsDescendants = true
+Button.Font = Enum.Font.TitilliumWeb
+Button.Name = "Button"
+Button.Position = UDim2.new(0.186595574, 0, 0.159805968, 0)
+Button.Size = UDim2.new(0.99, 0,0.095, 0)
+Button.Text = "  Button"
+Button.TextColor3 = Color3.new(1, 1, 1)
+Button.TextScaled = true
+Button.TextSize = 14
+Button.TextWrapped = true
+Button.TextXAlignment = Enum.TextXAlignment.Left
+
+local Toggle = Instance.new("TextButton", nil)
+
+Toggle.AutoButtonColor = false
+Toggle.BackgroundColor3 = Color3.new(0, 0, 0)
+Toggle.BackgroundTransparency = 0.5
+Toggle.BorderColor3 = Color3.new(0, 0, 0)
+Toggle.BorderSizePixel = 0
+Toggle.ClipsDescendants = true
+Toggle.Font = Enum.Font.TitilliumWeb
+Toggle.Name = "Toggle"
+Toggle.Position = UDim2.new(0.186595574, 0, 0.159805968, 0)
+Toggle.Size = UDim2.new(0.99, 0,0.095, 0)
+Toggle.Text = " Toggle"
+Toggle.TextColor3 = Color3.new(1, 1, 1)
+Toggle.TextScaled = true
+Toggle.TextSize = 14
+Toggle.TextWrapped = true
+Toggle.TextXAlignment = Enum.TextXAlignment.Left
+
+local Select = Instance.new("TextButton", nil)
+
+Select.AutoButtonColor = false
+Select.BackgroundColor3 = Color3.new(0, 0, 0)
+Select.BackgroundTransparency = 0.5
 Select.BorderColor3 = Color3.new(0, 0, 0)
 Select.BorderSizePixel = 0
-Select.AutoButtonColor = false
-Select.ImageTransparency = 0.6000000238418579
+Select.ClipsDescendants = true
+Select.Font = Enum.Font.TitilliumWeb
 Select.Name = "Select"
-Select.Transparency = 1
-Select.Position = UDim2.new(0.00899999961, 0, 0.112000003, 0)
-Select.ScaleType = Enum.ScaleType.Fit
-Select.Size = UDim2.new(0.177000001, 0, 0.6, 0)
-Select.SliceCenter = Rect.new(125, 125, 206, 317)
-Select.ZIndex = 6
-
-local Round = Instance.new("UICorner", Select)
-
+Select.Position = UDim2.new(0.186595574, 0, 0.159805968, 0)
+Select.Size = UDim2.new(0.99, 0,0.095, 0)
+Select.Text = " Select"
+Select.TextColor3 = Color3.new(1, 1, 1)
+Select.TextScaled = true
+Select.TextSize = 14
+Select.TextWrapped = true
+Select.TextXAlignment = Enum.TextXAlignment.Left
 
 local Option = Instance.new("TextLabel", Select)
 
@@ -98,146 +180,37 @@ Option.BackgroundColor3 = Color3.new(1, 1, 1)
 Option.BackgroundTransparency = 1
 Option.BorderColor3 = Color3.new(0, 0, 0)
 Option.BorderSizePixel = 0
-Option.Font = Enum.Font.Code
+Option.Font = Enum.Font.TitilliumWeb
 Option.Name = "Option"
-Option.Size = UDim2.new(1, 0, 0.729693651, 0)
-Option.Text = "Command"
+Option.Size = UDim2.new(0.980000019, 0, 1, 0)
+Option.Text = "Option"
 Option.TextColor3 = Color3.new(1, 1, 1)
 Option.TextScaled = true
 Option.TextSize = 14
-Option.TextStrokeColor3 = Color3.new(0.427451, 0.427451, 0.427451)
 Option.TextStrokeTransparency = 0
 Option.TextWrapped = true
-Option.ZIndex = 6
+Option.TextXAlignment = Enum.TextXAlignment.Right
 
-local CommandName = Instance.new("TextLabel", Select)
-
-CommandName.BackgroundColor3 = Color3.new(1, 1, 1)
-CommandName.BackgroundTransparency = 1
-CommandName.BorderColor3 = Color3.new(0, 0, 0)
-CommandName.BorderSizePixel = 0
-CommandName.Font = Enum.Font.Code
-CommandName.Name = "CommandName"
-CommandName.Position = UDim2.new(0, 0, 0.729693592, 0)
-CommandName.Size = UDim2.new(1, 0, 0.261318862, 0)
-CommandName.Text = "Name"
-CommandName.TextColor3 = Color3.new(1, 1, 1)
-CommandName.TextScaled = true
-CommandName.TextSize = 14
-CommandName.TextStrokeColor3 = Color3.new(0.427451, 0.427451, 0.427451)
-CommandName.TextStrokeTransparency = 0
-CommandName.TextWrapped = true
-CommandName.ZIndex = 6
-
-local List = Instance.new("UIListLayout", Scroll)
-
-List.FillDirection = Enum.FillDirection.Horizontal
-List.Name = "List"
-List.Padding = UDim.new(0.00999999978, 0)
-List.SortOrder = Enum.SortOrder.LayoutOrder
-List.VerticalAlignment = Enum.VerticalAlignment.Center
-
-local Metre = Instance.new("ImageButton", nil)
+local Metre = Instance.new("TextButton", nil)
 
 Metre.AutoButtonColor = false
-Metre.BackgroundColor3 = Color3.new(0.329412, 0.329412, 0.329412)
+Metre.BackgroundColor3 = Color3.new(0, 0, 0)
+Metre.BackgroundTransparency = 0.5
 Metre.BorderColor3 = Color3.new(0, 0, 0)
 Metre.BorderSizePixel = 0
-Metre.Transparency = 1
+Metre.ClipsDescendants = true
+Metre.Font = Enum.Font.TitilliumWeb
 Metre.Name = "Metre"
-Metre.Position = UDim2.new(0.00899999961, 0, 0.112000003, 0)
-Metre.ScaleType = Enum.ScaleType.Fit
-Metre.Size = UDim2.new(0.177000001, 0, 0.6, 0)
-Metre.SliceCenter = Rect.new(125, 125, 206, 317)
-Metre.ZIndex = 6
-
-local Round = Instance.new("UICorner", Metre)
-
-local CommandName = Instance.new("TextLabel", Metre)
-
-CommandName.BackgroundColor3 = Color3.new(1, 1, 1)
-CommandName.BackgroundTransparency = 1
-CommandName.BorderColor3 = Color3.new(0, 0, 0)
-CommandName.BorderSizePixel = 0
-CommandName.Font = Enum.Font.Code
-CommandName.Name = "CommandName"
-CommandName.Size = UDim2.new(1, 0, 0.729693592, 0)
-CommandName.Text = "Name"
-CommandName.TextColor3 = Color3.new(1, 1, 1)
-CommandName.TextScaled = true
-CommandName.TextSize = 14
-CommandName.TextStrokeColor3 = Color3.new(0.427451, 0.427451, 0.427451)
-CommandName.TextStrokeTransparency = 0
-CommandName.TextWrapped = true
-CommandName.ZIndex = 6
+Metre.Position = UDim2.new(0.186595574, 0, 0.159805968, 0)
+Metre.Size = UDim2.new(0.99, 0,0.095, 0)
+Metre.Text = " Metre"
+Metre.TextColor3 = Color3.new(1, 1, 1)
+Metre.TextScaled = true
+Metre.TextSize = 14
+Metre.TextWrapped = true
+Metre.TextXAlignment = Enum.TextXAlignment.Left
 
 local Bar = Instance.new("Frame", Metre)
-
-Bar.BackgroundColor3 = Color3.new(1, 1, 1)
-Bar.BackgroundTransparency = 0.5
-Bar.BorderColor3 = Color3.new(0, 0, 0)
-Bar.BorderSizePixel = 0
-Bar.Name = "Bar"
-Bar.Size = UDim2.new(0, 0, 1, 0)
-Bar.ZIndex = 6
-
-local Round = Instance.new("UICorner", Bar)
-
-local Editor = Instance.new("TextBox", Metre)
-
-Editor.BackgroundColor3 = Color3.new(1, 1, 1)
-Editor.BackgroundTransparency = 1
-Editor.BorderColor3 = Color3.new(0, 0, 0)
-Editor.BorderSizePixel = 0
-Editor.ClearTextOnFocus = false
-Editor.Font = Enum.Font.Code
-Editor.Name = "Editor"
-Editor.Position = UDim2.new(0, 0, 0.729689896, 0)
-Editor.Size = UDim2.new(1, 0, 0.27030769, 0)
-Editor.Text = "0"
-Editor.TextColor3 = Color3.new(1, 1, 1)
-Editor.TextScaled = true
-Editor.TextSize = 14
-Editor.TextStrokeColor3 = Color3.new(0.352941, 0.352941, 0.352941)
-Editor.TextStrokeTransparency = 0
-Editor.TextWrapped = true
-Editor.ZIndex = 6
-
-local ToggleButton = Instance.new("ImageButton", nil)
-
-ToggleButton.AutoButtonColor = false
-ToggleButton.BackgroundColor3 = Color3.new(1, 1, 1)
-ToggleButton.BorderColor3 = Color3.new(0, 0, 0)
-ToggleButton.BorderSizePixel = 0
-ToggleButton.Name = "Toggle"
-ToggleButton.BackgroundTransparency = 1
-ToggleButton.Position = UDim2.new(0.00899999961, 0, 0.112000003, 0)
-ToggleButton.ScaleType = Enum.ScaleType.Fit
-ToggleButton.Size = UDim2.new(0.177000001, 0, 0.6, 0)
-ToggleButton.SliceCenter = Rect.new(125, 125, 206, 317)
-ToggleButton.ZIndex = 6
-
-local Round = Instance.new("UICorner", ToggleButton)
-
-local CommandName = Instance.new("TextLabel", ToggleButton)
-
-CommandName.BackgroundColor3 = Color3.new(1, 1, 1)
-CommandName.BackgroundTransparency = 1
-CommandName.BorderColor3 = Color3.new(0, 0, 0)
-CommandName.BorderSizePixel = 0
-CommandName.Font = Enum.Font.Code
-CommandName.Name = "CommandName"
-CommandName.Size = UDim2.new(1, 0, 0.991012454, 0)
-CommandName.Text = "Name"
-CommandName.TextColor3 = Color3.new(1, 1, 1)
-CommandName.TextScaled = true
-CommandName.TextSize = 14
-CommandName.TextStrokeColor3 = Color3.new(0.427451, 0.427451, 0.427451)
-CommandName.TextStrokeTransparency = 0
-CommandName.TextWrapped = true
-CommandName.ZIndex = 6
-
-local Bar = Instance.new("Frame", ToggleButton)
 
 Bar.BackgroundColor3 = Color3.new(1, 1, 1)
 Bar.BackgroundTransparency = 0.800000011920929
@@ -245,89 +218,225 @@ Bar.BorderColor3 = Color3.new(0, 0, 0)
 Bar.BorderSizePixel = 0
 Bar.Name = "Bar"
 Bar.Size = UDim2.new(0, 0, 1, 0)
-Bar.ZIndex = 6
 
-local Split = Instance.new("Frame", nil)
+local Corner = Instance.new("UICorner", Bar)
+
+Corner.CornerRadius = UDim.new(0.4,0)
+
+local Popup = Instance.new("Frame", UI)
+
+Popup.BackgroundColor3 = Color3.new(0, 0, 0)
+Popup.BackgroundTransparency = 0.5
+Popup.BorderColor3 = Color3.new(0, 0, 0)
+Popup.BorderSizePixel = 0
+Popup.Name = "Popup"
+Popup.Position = UDim2.new(-0.263537854, 0, 0.747711897, 0)
+Popup.Size = UDim2.new(0.262750238, 0, 0.227118641, 0)
+
+local Corner = Instance.new("UICorner", Popup)
+
+Corner.CornerRadius = UDim.new(0.05,0)
+
+local Stroke = Instance.new("UIStroke", Popup)
+
+Stroke.Thickness = 2
+Stroke.Color = Color3.new(1,1,1)
+
+local Title = Instance.new("TextLabel", Popup)
+
+Title.BackgroundColor3 = Color3.new(1, 1, 1)
+Title.BackgroundTransparency = 1
+Title.BorderColor3 = Color3.new(0, 0, 0)
+Title.BorderSizePixel = 0
+Title.Font = Enum.Font.TitilliumWeb
+Title.Name = "Title"
+Title.Size = UDim2.new(1, 0, 0.204228088, 0)
+Title.Text = "Notification"
+Title.TextColor3 = Color3.new(1, 1, 1)
+Title.TextScaled = true
+Title.TextSize = 14
+Title.TextStrokeTransparency = 0
+Title.TextWrapped = true
+
+local Split = Instance.new("Frame", Popup)
 
 Split.BackgroundColor3 = Color3.new(1, 1, 1)
-Split.BackgroundTransparency = 1
 Split.BorderColor3 = Color3.new(0, 0, 0)
 Split.BorderSizePixel = 0
 Split.Name = "Split"
-Split.Position = UDim2.new(0.561000049, 0, 0.222500011, 0)
-Split.Size = UDim2.new(0.0168428309, 0, 0.555000067, 0)
-Split.ZIndex = 6
+Split.Position = UDim2.new(0.0653302073, 0, 0.202180326, 0)
+Split.Size = UDim2.new(0.867999971, 0, 0, 1)
 
-local Split2 = Instance.new("Frame", Split)
+local PopupDescription = Instance.new("TextLabel", Popup)
 
-Split2.BackgroundColor3 = Color3.new(1, 1, 1)
-Split2.BackgroundTransparency = 0.5
-Split2.BorderColor3 = Color3.new(0, 0, 0)
-Split2.BorderSizePixel = 0
-Split2.Position = UDim2.new(0.5, 0, 0, 0)
-Split2.Size = UDim2.new(0.0500000007, 0, 1, 0)
-Split2.ZIndex = 6
+PopupDescription.BackgroundColor3 = Color3.new(1, 1, 1)
+PopupDescription.BackgroundTransparency = 1
+PopupDescription.BorderColor3 = Color3.new(0, 0, 0)
+PopupDescription.BorderSizePixel = 0
+PopupDescription.Font = Enum.Font.TitilliumWeb
+PopupDescription.Name = "Description"
+PopupDescription.Position = UDim2.new(0, 0, 0.208955452, 0)
+PopupDescription.Size = UDim2.new(1, 0, 0.517660677, 0)
+PopupDescription.Text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis gravida ipsum ac lacus venenatis laoreet."
+PopupDescription.TextColor3 = Color3.new(1, 1, 1)
+PopupDescription.TextScaled = true
+PopupDescription.TextSize = 14
+PopupDescription.TextStrokeTransparency = 0
+PopupDescription.TextWrapped = true
 
-local Round = Instance.new("UICorner", Split)
+local OkButton = Instance.new("TextButton", Popup)
 
+OkButton.BackgroundColor3 = Color3.new(0, 0, 0)
+OkButton.BackgroundTransparency = 0.5
+OkButton.BorderColor3 = Color3.new(0, 0, 0)
+OkButton.BorderSizePixel = 0
+OkButton.Font = Enum.Font.TitilliumWeb
+OkButton.Name = "Button"
+OkButton.Position = UDim2.new(0.397482574, 0, 0.771392584, 0)
+OkButton.Size = UDim2.new(0.202683002, 0, 0.174129367, 0)
+OkButton.Text = "Ok"
+OkButton.TextColor3 = Color3.new(1, 1, 1)
+OkButton.TextScaled = true
+OkButton.TextSize = 14
+OkButton.TextWrapped = true
 
-local Button = Instance.new("ImageButton", nil)
+local Corner = Instance.new("UICorner", OkButton)
 
-Button.BackgroundColor3 = Color3.new(0.854902, 0.854902, 0.854902)
-Button.BorderColor3 = Color3.new(0, 0, 0)
-Button.BorderSizePixel = 0
-Button.ImageTransparency = 0.6000000238418579
-Button.Name = "Button"
-Button.ClipsDescendants = true
-Button.AutoButtonColor = false
-Button.Position = UDim2.new(0, 0, 0, 0)
-Button.Transparency = 1
-Button.ScaleType = Enum.ScaleType.Fit
-Button.Size = UDim2.new(0.177000001, 0, 0.6, 0)
-Button.SliceCenter = Rect.new(125, 125, 206, 317)
-Button.ZIndex = 6
+Corner.CornerRadius = UDim.new(0.3,0)
 
-local CommandName = Instance.new("TextLabel", Button)
+local PlayerMenu = Instance.new("Frame", UI)
 
-CommandName.BackgroundColor3 = Color3.new(1, 1, 1)
-CommandName.BackgroundTransparency = 1
-CommandName.BorderColor3 = Color3.new(0, 0, 0)
-CommandName.BorderSizePixel = 0
-CommandName.Font = Enum.Font.Code
-CommandName.Name = "CommandName"
-CommandName.Size = UDim2.new(1, 0, 0.991012454, 0)
-CommandName.Text = "Name"
-CommandName.TextColor3 = Color3.new(1, 1, 1)
-CommandName.TextScaled = true
-CommandName.TextSize = 14
-CommandName.TextStrokeColor3 = Color3.new(0.427451, 0.427451, 0.427451)
-CommandName.TextStrokeTransparency = 0
-CommandName.TextWrapped = true
-CommandName.ZIndex = 6
+PlayerMenu.BackgroundColor3 = Color3.new(0, 0, 0)
+PlayerMenu.BackgroundTransparency = 0.5
+PlayerMenu.BorderColor3 = Color3.new(0, 0, 0)
+PlayerMenu.BorderSizePixel = 0
+PlayerMenu.Visible = false
+PlayerMenu.Name = "PlayerMenu"
+PlayerMenu.Position = UDim2.new(0.759660482, 0, 0.0302541964, 0)
+PlayerMenu.Size = UDim2.new(0.225326389, 0, 0.46892637, 0)
 
-local Round = Instance.new("UICorner", Button)
+local Corner = Instance.new("UICorner", PlayerMenu)
 
-local Description = Instance.new("Frame", Admin)
+Corner.CornerRadius = UDim.new(0.05,0)
+
+local Stroke = Instance.new("UIStroke", PlayerMenu)
+
+Stroke.Color = Color3.new(1,1,1)
+Stroke.Thickness = 2
+
+local PlrName = Instance.new("TextLabel", PlayerMenu)
+
+PlrName.BackgroundColor3 = Color3.new(1, 1, 1)
+PlrName.BackgroundTransparency = 1
+PlrName.BorderColor3 = Color3.new(0, 0, 0)
+PlrName.BorderSizePixel = 0
+PlrName.Font = Enum.Font.TitilliumWeb
+PlrName.Name = "PlrName"
+PlrName.Size = UDim2.new(1, 0, 0.11467579, 0)
+PlrName.Text = "Player"
+PlrName.TextColor3 = Color3.new(1, 1, 1)
+PlrName.TextScaled = true
+PlrName.TextSize = 14
+PlrName.TextStrokeTransparency = 0
+PlrName.TextWrapped = true
+
+local PlrSplit2 = Instance.new("Frame", PlayerMenu)
+
+PlrSplit2.BackgroundColor3 = Color3.new(1, 1, 1)
+PlrSplit2.BackgroundTransparency = 0.30000001192092896
+PlrSplit2.BorderColor3 = Color3.new(0, 0, 0)
+PlrSplit2.BorderSizePixel = 0
+PlrSplit2.Name = "PlrSplit2"
+PlrSplit2.Position = UDim2.new(0.0653301701, 0, 0.112627961, 0)
+PlrSplit2.Size = UDim2.new(0.867999971, 0, 0, 1)
+
+local PlrScroll = Instance.new("ScrollingFrame", PlayerMenu)
+
+PlrScroll.Active = true
+PlrScroll.BackgroundColor3 = Color3.new(1, 1, 1)
+PlrScroll.BackgroundTransparency = 0.9999998807907104
+PlrScroll.BorderColor3 = Color3.new(0, 0, 0)
+PlrScroll.BorderSizePixel = 0
+PlrScroll.CanvasSize = UDim2.new(0, 0, 0, 0)
+PlrScroll.Name = "Scroll"
+PlrScroll.Position = UDim2.new(0.0653299838, 0, 0.160410732, 0)
+PlrScroll.ScrollBarThickness = 1
+PlrScroll.Size = UDim2.new(0.867999673, 0, 0.76517874, 0)
+
+local List = Instance.new("UIListLayout", PlrScroll)
+
+List.HorizontalAlignment = Enum.HorizontalAlignment.Center
+List.Name = "List"
+List.Padding = UDim.new(0.0199999996, 0)
+List.SortOrder = Enum.SortOrder.LayoutOrder
+
+local PlrButton = Instance.new("TextButton", PlrScroll)
+
+PlrButton.AutoButtonColor = false
+PlrButton.BackgroundColor3 = Color3.new(0, 0, 0)
+PlrButton.BackgroundTransparency = 0.5
+PlrButton.BorderColor3 = Color3.new(0, 0, 0)
+PlrButton.BorderSizePixel = 0
+PlrButton.ClipsDescendants = true
+PlrButton.Font = Enum.Font.TitilliumWeb
+PlrButton.Name = "PlrButton"
+PlrButton.Position = UDim2.new(0.186595574, 0, 0, 0)
+PlrButton.Size = UDim2.new(0.680207551, 0, 0.0950434357, 0)
+PlrButton.Text = "  Button"
+PlrButton.TextColor3 = Color3.new(1, 1, 1)
+PlrButton.TextScaled = true
+PlrButton.TextSize = 14
+PlrButton.TextWrapped = true
+PlrButton.TextXAlignment = Enum.TextXAlignment.Left
+
+local PlrToggle = Instance.new("TextButton", PlrScroll)
+
+PlrToggle.AutoButtonColor = false
+PlrToggle.BackgroundColor3 = Color3.new(0, 0, 0)
+PlrToggle.BackgroundTransparency = 0.5
+PlrToggle.BorderColor3 = Color3.new(0, 0, 0)
+PlrToggle.BorderSizePixel = 0
+PlrToggle.ClipsDescendants = true
+PlrToggle.Font = Enum.Font.TitilliumWeb
+PlrToggle.Name = "PlrToggle"
+PlrToggle.Position = UDim2.new(0.186595574, 0, 0.115043469, 0)
+PlrToggle.Size = UDim2.new(0.680207551, 0, 0.0950434357, 0)
+PlrToggle.Text = " Toggle"
+PlrToggle.TextColor3 = Color3.new(1, 1, 1)
+PlrToggle.TextScaled = true
+PlrToggle.TextSize = 14
+PlrToggle.TextWrapped = true
+PlrToggle.TextXAlignment = Enum.TextXAlignment.Left
+
+local PlrSplit = Instance.new("Frame", PlrScroll)
+
+PlrSplit.BackgroundColor3 = Color3.new(1, 1, 1)
+PlrSplit.BackgroundTransparency = 0.30000001192092896
+PlrSplit.BorderColor3 = Color3.new(0, 0, 0)
+PlrSplit.BorderSizePixel = 0
+PlrSplit.Name = "PlrSplit"
+PlrSplit.Position = UDim2.new(0.0653301701, 0, 0.112627961, 0)
+PlrSplit.Size = UDim2.new(0.867999971, 0, 0, 1)
+
+local Description = Instance.new("Frame", UI)
 
 Description.BackgroundColor3 = Color3.new(0, 0, 0)
+Description.BackgroundTransparency = 0.5
 Description.BorderColor3 = Color3.new(0, 0, 0)
 Description.BorderSizePixel = 0
 Description.Name = "Description"
-Description.Position = UDim2.new(0.173124522, 0, 0.189189181, 0)
-Description.Size = UDim2.new(0.19223541, 0, 0.205433846, 0)
+Description.Position = UDim2.new(0.208746657, 0, 0.323474526, 0)
+Description.Size = UDim2.new(0.182680607, 0, 0.0740111247, 0)
 Description.Visible = false
-Description.ZIndex = 9
-Description.Transparency = 0.4
 
-local Round = Instance.new("UICorner",Description)
+local Corner = Instance.new("UICorner", Description)
 
-local Stroke = Instance.new("UIStroke",Description)
+Corner.CornerRadius = UDim.new(0.2,0)
 
-Stroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+local Stroke = Instance.new("UIStroke", Description)
 
 Stroke.Color = Color3.new(1,1,1)
-
-Stroke.Thickness = 3
+Stroke.Thickness = 2
 
 local Desc = Instance.new("TextLabel", Description)
 
@@ -335,192 +444,15 @@ Desc.BackgroundColor3 = Color3.new(1, 1, 1)
 Desc.BackgroundTransparency = 1
 Desc.BorderColor3 = Color3.new(0, 0, 0)
 Desc.BorderSizePixel = 0
-Desc.Font = Enum.Font.Code
+Desc.Font = Enum.Font.TitilliumWeb
 Desc.Name = "Desc"
-Desc.Size = UDim2.new(1, 0, 1, 0)
-Desc.Text = "Text Here"
+Desc.Position = UDim2.new(0, 0, -5.90663944e-07, 0)
+Desc.Size = UDim2.new(1, 0, 0.999998569, 0)
 Desc.TextColor3 = Color3.new(1, 1, 1)
 Desc.TextScaled = true
 Desc.TextSize = 14
-Desc.TextStrokeTransparency = 0.5
+Desc.TextStrokeTransparency = 0
 Desc.TextWrapped = true
-Desc.TextXAlignment = Enum.TextXAlignment.Left
-Desc.ZIndex = 10
-
-local PlayerEdit = Instance.new("Frame", Admin)
-
-PlayerEdit.BackgroundColor3 = Color3.new(0.113725, 0.113725, 0.113725)
-PlayerEdit.BorderColor3 = Color3.new(0, 0, 0)
-PlayerEdit.BorderSizePixel = 0
-PlayerEdit.Name = "PlayerEdit"
-PlayerEdit.Position = UDim2.new(0.138883978, 0, 0.324086577, 0)
-PlayerEdit.Size = UDim2.new(0.19223541, 0, 0.349758595, 0)
-PlayerEdit.Visible = false
-PlayerEdit.ZIndex = 9
-
-local Title = Instance.new("TextLabel", PlayerEdit)
-
-Title.BackgroundColor3 = Color3.new(1, 1, 1)
-Title.BackgroundTransparency = 1
-Title.BorderColor3 = Color3.new(0, 0, 0)
-Title.BorderSizePixel = 0
-Title.Font = Enum.Font.Code
-Title.Name = "Title"
-Title.Position = UDim2.new(-0.00456712488, 0, 0.0293457545, 0)
-Title.Size = UDim2.new(1, 0, 0.0900000036, 0)
-Title.Text = "Player"
-Title.TextColor3 = Color3.new(1, 1, 1)
-Title.TextScaled = true
-Title.TextSize = 14
-Title.TextStrokeTransparency = 0.5
-Title.TextWrapped = true
-Title.ZIndex = 10
-
-local Round = Instance.new("UICorner", PlayerEdit)
-
-local Close = Instance.new("TextButton", PlayerEdit)
-
-Close.BackgroundColor3 = Color3.new(0.317647, 0.317647, 0.317647)
-Close.BorderColor3 = Color3.new(0, 0, 0)
-Close.BorderSizePixel = 0
-Close.Font = Enum.Font.Code
-Close.Name = "Close"
-Close.Position = UDim2.new(0.162525207, 0, 0.834292173, 0)
-Close.Size = UDim2.new(0.669987381, 0, 0.120430999, 0)
-Close.Text = "Close"
-Close.TextColor3 = Color3.new(1, 1, 1)
-Close.TextScaled = true
-Close.TextSize = 14
-Close.TextWrapped = true
-Close.ZIndex = 10
-
-local Round = Instance.new("UICorner", Close)
-
-local Scroll2 = Instance.new("ScrollingFrame", PlayerEdit)
-
-Scroll2.Active = true
-Scroll2.BackgroundColor3 = Color3.new(1, 1, 1)
-Scroll2.BorderColor3 = Color3.new(0, 0, 0)
-Scroll2.BorderSizePixel = 0
-Scroll2.CanvasSize = UDim2.new(0, 0, 1, 0)
-Scroll2.Name = "Scroll"
-Scroll2.Position = UDim2.new(0, 0, 0.150921017, 0)
-Scroll2.ScrollingDirection = Enum.ScrollingDirection.Y
-Scroll2.Size = UDim2.new(0.99999994, 0, 0.652043104, 0)
-
-local List = Instance.new("UIListLayout", Scroll2)
-
-List.HorizontalAlignment = Enum.HorizontalAlignment.Center
-List.Name = "List"
-List.Padding = UDim.new(0.0500000007, 0)
-List.SortOrder = Enum.SortOrder.LayoutOrder
-
-local CustomPlayerButton = Instance.new("TextButton", Scroll2)
-
-CustomPlayerButton.BackgroundColor3 = Color3.new(0.317647, 0.317647, 0.317647)
-CustomPlayerButton.BorderColor3 = Color3.new(0, 0, 0)
-CustomPlayerButton.BorderSizePixel = 0
-CustomPlayerButton.Font = Enum.Font.Code
-CustomPlayerButton.Name = "Button"
-CustomPlayerButton.Position = UDim2.new(0.208394051, 0, -9.81049624e-08, 0)
-CustomPlayerButton.Size = UDim2.new(0.583211899, 0, 0.139801741, 0)
-CustomPlayerButton.Text = "Button"
-CustomPlayerButton.TextColor3 = Color3.new(1, 1, 1)
-CustomPlayerButton.TextScaled = true
-CustomPlayerButton.TextSize = 14
-CustomPlayerButton.TextWrapped = true
-CustomPlayerButton.ZIndex = 10
-
-local Round = Instance.new("UICorner", CustomPlayerButton)
-
-local Popup = Instance.new("Frame", Admin)
-
-Popup.BackgroundColor3 = Color3.new(0.113725, 0.113725, 0.113725)
-Popup.BorderColor3 = Color3.new(0, 0, 0)
-Popup.BorderSizePixel = 0
-Popup.ClipsDescendants = true
-Popup.Name = "Popup"
-Popup.Position = UDim2.new(0.34523809, 0, 0.355205268, 0)
-Popup.Size = UDim2.new(0.309523821, 0, 0.293181807, 0)
-Popup.Visible = false
-Popup.ZIndex = 5
-
-local Round = Instance.new("UICorner", Popup)
-
-local Top = Instance.new("Frame", Popup)
-
-Top.BackgroundColor3 = Color3.new(0.258824, 0.258824, 0.258824)
-Top.BorderColor3 = Color3.new(0, 0, 0)
-Top.BorderSizePixel = 0
-Top.Name = "Top"
-Top.Size = UDim2.new(1, 0, 0.119999997, 0)
-Top.ZIndex = 6
-
-local Round = Instance.new("UICorner", Top)
-
-local Title = Instance.new("TextLabel", Top)
-
-Title.BackgroundColor3 = Color3.new(1, 1, 1)
-Title.BackgroundTransparency = 1
-Title.BorderColor3 = Color3.new(0, 0, 0)
-Title.BorderSizePixel = 0
-Title.Font = Enum.Font.Code
-Title.Name = "Title"
-Title.Size = UDim2.new(1, 0, 0.800000012, 0)
-Title.Text = "Title"
-Title.TextColor3 = Color3.new(1, 1, 1)
-Title.TextScaled = true
-Title.TextSize = 14
-Title.TextWrapped = true
-Title.ZIndex = 6
-
-local Description2 = Instance.new("TextLabel", Popup)
-
-Description2.BackgroundColor3 = Color3.new(1, 1, 1)
-Description2.BackgroundTransparency = 1
-Description2.BorderColor3 = Color3.new(0, 0, 0)
-Description2.BorderSizePixel = 0
-Description2.Font = Enum.Font.Code
-Description2.Name = "Description"
-Description2.Position = UDim2.new(0.0460829511, 0, 0.139687702, 0)
-Description2.Size = UDim2.new(0.90322578, 0, 0.569926202, 0)
-Description2.Text = "Description"
-Description2.TextColor3 = Color3.new(1, 1, 1)
-Description2.TextScaled = true
-Description2.TextSize = 14
-Description2.TextWrapped = true
-Description2.ZIndex = 5
-
-local OkButton = Instance.new("TextButton", Popup)
-
-OkButton.BackgroundColor3 = Color3.new(0.317647, 0.317647, 0.317647)
-OkButton.BorderColor3 = Color3.new(0, 0, 0)
-OkButton.BorderSizePixel = 0
-OkButton.Font = Enum.Font.Code
-OkButton.Name = "Button"
-OkButton.Position = UDim2.new(0.299539179, 0, 0.763023913, 0)
-OkButton.Size = UDim2.new(0.398617506, 0, 0.195891529, 0)
-OkButton.Text = "Ok"
-OkButton.TextColor3 = Color3.new(1, 1, 1)
-OkButton.TextScaled = true
-OkButton.TextSize = 14
-OkButton.TextWrapped = true
-OkButton.ZIndex = 6
-
-local Round = Instance.new("UICorner", OkButton)
-
-
-local Block = Instance.new("Frame", Popup)
-
-Block.BackgroundColor3 = Color3.new(0.113725, 0.113725, 0.113725)
-Block.BorderColor3 = Color3.new(0, 0, 0)
-Block.BorderSizePixel = 0
-Block.Name = "Block"
-Block.Position = UDim2.new(0, 0, 0.100000001, 0)
-Block.Size = UDim2.new(1, 0, 0.0399999991, 0)
-Block.ZIndex = 7
-
-local Round = Instance.new("UICorner", Block)
 
 -- Functions
 
@@ -573,27 +505,77 @@ end
 
 function ShowPopup(TitleText: string,DescriptionText: string,ButtonText: string)
 
-	Popup.Visible = true
+	if Popup:HasTag("Open") then
+
+		game.TweenService:Create(Popup,TweenInfo.new(0.2),{Position = UDim2.new(0.01, 0,1.1, 0)}):Play()
+		wait(0.2)
+
+	end
+
+	Popup.Position = UDim2.new(-0.264, 0,0.748, 0)
+
+	Popup:AddTag("Open")
 
 	Sound(game.Workspace,"3398620867",1)
 
 	OkButton.Text = ButtonText
 
-	Description2.Text = DescriptionText
+	PopupDescription.Text = DescriptionText
 
 	Title.Text = TitleText
 
+	game.TweenService:Create(Popup,TweenInfo.new(0.3),{Position = UDim2.new(0.01, 0,0.748, 0)}):Play()
+
 	OkButton.MouseButton1Down:Once(function()
 
-		Popup.Visible = false
+		Popup:RemoveTag("Open")
+		game.TweenService:Create(Popup,TweenInfo.new(0.3),{Position = UDim2.new(-0.264, 0,0.748, 0)}):Play()
 
 	end)
 
 end
 
+local UIS = game:GetService("UserInputService")
+
+function Drag(Frame)
+	local dragToggle = nil
+	local dragSpeed = 0.25
+	local dragInput = nil
+	local dragStart = nil
+	local dragPos = nil
+	local startPos
+
+	local function updateInput(input)
+		local Delta = input.Position - dragStart
+		local Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + Delta.X, startPos.Y.Scale, startPos.Y.Offset + Delta.Y)
+		game:GetService("TweenService"):Create(Frame, TweenInfo.new(0.30), {Position = Position}):Play()
+	end
+	Frame.InputBegan:Connect(function(input)
+		if (input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch) and UIS:GetFocusedTextBox() == nil then
+			dragToggle = true
+			dragStart = input.Position
+			startPos = Frame.Position
+			input.Changed:Connect(function()
+				if input.UserInputState == Enum.UserInputState.End then
+					dragToggle = false
+				end
+			end)
+		end
+	end)
+	Frame.InputChanged:Connect(function(input)
+		if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+			dragInput = input
+		end
+	end)
+	game:GetService("UserInputService").InputChanged:Connect(function(input)
+		if input == dragInput and dragToggle then
+			updateInput(input)
+		end
+	end)
+end
+
 -- Variables
 
-local Open = false
 local Plr = game.Players.LocalPlayer
 local Mouse = Plr:GetMouse()
 local ID = game.PlaceId
@@ -601,86 +583,195 @@ local Commands = {}
 
 -- Appear
 
-game.TweenService:Create(Main,TweenInfo.new(0.5),{BackgroundTransparency = 0.4}):Play()
-game.TweenService:Create(Toggle,TweenInfo.new(0.5),{Position = UDim2.new(0.475, 0, -0.55, 0)}):Play()
+game.TweenService:Create(Background,TweenInfo.new(0.5),{Size = UDim2.new(0.2, 0,0.447, 0)}):Play()
+Drag(Background)
 
-spawn(function()
-
-	wait(0.5)
-	Toggle.Active = true
-
-end)
+-- Commands
 
 local Games = {
 
 	["142823291"] = function ()
-		
+
 		local Gun = false
 		local Coins = false
 		local Stab = false
-		
+		local Loop = nil
+		local MovePos = nil
+		local Roles = false
+		local GunShow = false
+		local CoinReach = false
+		local MurderAll = false
+
 		local Found = nil
 
 		local Best = math.huge
-		
+
 		Commands = {
 
 			{
 
+				Type = "Title",
+				Text = "Visual"
+
+			},
+
+			{
+
+				Type = "Split",
+
+			},	
+
+			{
+
 				Name = "Show Roles",
-				Type = "Button",
+				Type = "Toggle",
 				Desc = "Shows you the roles of everybody",
 				Action = function(On)
-					
-					local GotMurderer = false
-					
-					for _, Thing in game.Players:GetPlayers() do
 
-						local Highlight = Instance.new("Highlight",Thing.Character)
+					if On then
 
-						Highlight.FillTransparency = 1
+						Roles = true
 
-						if Thing.Character:FindFirstChild("PlayerHighlightType") then
+						spawn(function()
 
-							Thing.Character:FindFirstChild("PlayerHighlightType"):Destroy()
+							while Roles do
 
-						end
+								for _, Thing in game.Players:GetPlayers() do
 
-						Highlight.Name = "PlayerHighlightType"
+									local Highlight = Instance.new("Highlight",Thing.Character)
 
-						Highlight.OutlineColor = Color3.new(1,1,1)
+									Highlight.FillTransparency = 1
 
-						if Thing.Backpack:FindFirstChild("Knife") or Thing.Character:FindFirstChild("Knife") then
+									Highlight.OutlineColor = Color3.new(1,1,1)
 
-							Highlight.OutlineColor = Color3.new(1,0,0)
-							GotMurderer = true
+									if not Thing.Character then
 
-						end
+										continue
 
-						if Thing.Backpack:FindFirstChild("Gun") or Thing.Character:FindFirstChild("Gun") then
+									end
 
-							Highlight.OutlineColor = Color3.new(0,0,1)
+									if Thing.Backpack:FindFirstChild("Knife") or Thing.Character:FindFirstChild("Knife") then
 
-						end
+										Highlight.OutlineColor = Color3.new(1,0,0)
+
+									end
+
+									if Thing.Backpack:FindFirstChild("Gun") or Thing.Character:FindFirstChild("Gun") then
+
+										Highlight.OutlineColor = Color3.new(0,0,1)
+
+									end
+
+									wait(0.01)
+
+									if Thing.Character and Thing.Character:FindFirstChild("PlayerHighlightType") then
+
+										Thing.Character:FindFirstChild("PlayerHighlightType"):Destroy()
+
+									end
+
+									Highlight.Name = "PlayerHighlightType"
+
+								end
+
+								wait(0.5)
+
+							end
+
+						end)
+
+					else
+
+						Roles = false
+
+						spawn(function()
+
+							for _, Thing in game.Players:GetPlayers() do
+
+								if Thing.Character:FindFirstChild("PlayerHighlightType") then
+
+									Thing.Character:FindFirstChild("PlayerHighlightType"):Destroy()
+
+								end
+
+							end
+
+						end)
 
 					end
-					
-					if not GotMurderer then
-						
-						ShowPopup("Roles","Please wait until a round has started.","Ok")
-						
-					end
+
 				end,
 
 			},
-			
+
+			{
+
+				Name = "Show Gun",
+				Type = "Toggle",
+				Desc = "Shows you where the gun is (If dropped)",
+				Action = function(On)
+
+					if On then
+
+						GunShow = true
+
+						spawn(function()
+
+							while GunShow do
+
+								for _, Thing in game.Workspace:GetDescendants() do
+
+									if Thing.Name == "GunDrop" and Thing:IsA("BasePart") and not Thing:FindFirstChild("GunHighlight") then
+
+										local Highlight = Instance.new("Highlight",Thing)
+
+										Highlight.FillTransparency = 1
+
+										Highlight.OutlineColor = Color3.new(1,1,0)
+
+										Highlight.Name = "GunHighlight"
+
+									end
+
+								end
+
+								wait(0.5)
+
+							end
+
+						end)
+
+					else
+
+						GunShow = false
+
+						spawn(function()
+
+							for _, Thing in game.Players:GetPlayers() do
+
+								if Thing.Character:FindFirstChild("PlayerHighlightType") then
+
+									Thing.Character:FindFirstChild("PlayerHighlightType"):Destroy()
+
+								end
+
+							end
+
+						end)
+
+					end
+
+				end,
+
+			},
+
 			{
 
 				Name = "Fake Knife",
 				Type = "Button",
 				Desc = "Gives you an item to make it look like your holding a knife.",
 				Action = function(On)
-					
+
 					local FakeKnife = Instance.new("Tool", Plr.Backpack)
 
 					FakeKnife.CanBeDropped = false
@@ -694,35 +785,42 @@ local Games = {
 					Handle.Name = "Handle"
 					Handle.Size = Vector3.new(0.001, 0.001, 0.001)
 					Handle.Transparency = 1
-					
+
 					FakeKnife.Activated:Connect(function()
-						
+
 						local Animation = Instance.new("Animation",Plr.Character)
 						Animation.Name = "FakeSwing"
-						
+
 						if math.random(1,2) == 1 then
-							
+
 							Animation.AnimationId = "rbxassetid://1957890538"
-							
+
 						else
-							
+
 							Animation.AnimationId = "rbxassetid://2467567750"
-							
+
 						end
-						
+
 						local Track = Plr.Character.Humanoid:LoadAnimation(Animation)
-						
+
 						Track:Play()
-						
+
 						FakeKnife.Enabled = false
-						
+
 						wait(1)
-						
+
 						FakeKnife.Enabled = true
-						
+
 					end)
-					
+
 				end,
+
+			},
+
+			{
+
+				Type = "Title",
+				Text = "Teleport"
 
 			},
 
@@ -731,7 +829,7 @@ local Games = {
 				Type = "Split",
 
 			},	
-			
+
 			{
 
 				Name = "To Innocent",
@@ -851,13 +949,7 @@ local Games = {
 				end,
 
 			},
-			
-			{
 
-				Type = "Split",
-
-			},
-			
 			{
 
 				Name = "Auto Sheriff Gun",
@@ -866,11 +958,11 @@ local Games = {
 				Action = function(On)
 
 					if On then
-						
+
 						Gun = true
-						
+
 						spawn(function()
-							
+
 							while Gun do
 
 								task.wait(1)
@@ -879,42 +971,67 @@ local Games = {
 
 									if Thing.Name == "GunDrop" and Thing:IsA("BasePart") then
 
-										game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = Thing.CFrame
+										if Plr.Character then
+
+											Plr.Character.HumanoidRootPart.CFrame = Thing.CFrame
+
+										end
 
 									end
 
 								end
 
 							end
-							
+
 						end)
-						
+
 					else
-						
+
 						Gun = false
-						
+
 					end
 
 				end,
 
 			},
-			
+
 			{
 
-				Name = "Auto Coin",
+				Type = "Title",
+				Text = "Farming"
+
+			},
+
+			{
+
+				Type = "Split",
+
+			},
+
+			{
+
+				Name = "Get Coins",
 				Type = "Toggle",
 				Desc = "Automatically tween to every coin.",
 				Action = function(On)
 
 					if On then
 
+						local Checked = false
+
 						Coins = true
-						
+
 						local Move = Instance.new("BodyVelocity",Plr.Character.HumanoidRootPart)
-						
+
+						Move.Velocity = Vector3.new(0,0,0)
+
 						local function NoclipLoop()
-							
-							Plr.Character.Humanoid.Sit = true
+
+							if Plr.Character.Humanoid then
+
+								Plr.Character.Humanoid.Sit = true
+
+							end
 							for _, Limb in Plr.Character:GetDescendants() do
 								if Limb:IsA("BasePart") and Limb.CanCollide == true then
 									Limb.CanCollide = false
@@ -922,93 +1039,247 @@ local Games = {
 							end
 
 						end
-						
+
 						local Noclipping = game["Run Service"].Stepped:Connect(NoclipLoop)
-						
+
+						Loop = Noclipping
+						MovePos = Move
+
 						spawn(function()
-							
+
 							Coins = true
-							
-							local Part = Instance.new("Part")
-							Part.Anchored = true
-							local High = Instance.new("Highlight",Part)
-							
+
 							while Coins do
-								
+
 								task.wait(0.2)
 
 								for _, Thing in game.Workspace:GetDescendants() do
-									
-									if not Thing:IsA("BasePart") then
-										
-										continue
-										
+
+									if Coins == false then
+
+										Noclipping:Disconnect()
+										Move:Destroy()
+										Plr.Character.Humanoid.Sit = false
+										return
+
 									end
-									
-									if Thing.Transparency == 1 then
-										
-										continue
-										
-									end
-									
-									if Thing.Transparency ~= 0 then
-										
-										continue
-										
-									end
-									
-									if Thing.Name == "CoinVisual" and Thing.Transparency == 0 and Thing.Transparency ~= 1 and Thing:IsA("BasePart") then
+
+									if Thing.Name == "CoinVisual" and Thing.Transparency == 0 and Thing:IsA("BasePart") then
 
 										if (Thing.Position - Plr.Character:FindFirstChild("HumanoidRootPart").Position).Magnitude < Best then
 
 											Best = (Thing.Position - Plr.Character:FindFirstChild("HumanoidRootPart").Position).Magnitude
 											Found = Thing
 
+											if Coins == false then
+
+												Noclipping:Disconnect()
+												Move:Destroy()
+												Plr.Character.Humanoid.Sit = false
+												return
+
+											end
+
 										end
 
 									end
 
 								end
-								
-								Part.Parent = game.Workspace
-								Part.Position = Found.Position
-								
-								Move.Velocity = (Found.Position - Plr.Character.HumanoidRootPart.Position).Unit * 35
+
+								if not Found then
+
+									continue
+
+								end
+
+								if Found.Transparency ~= 0 then
+
+									for _, Thing in game.Workspace:GetDescendants() do
+
+										if Coins == false then
+
+											Noclipping:Disconnect()
+											Move:Destroy()
+											Plr.Character.Humanoid.Sit = false
+											return
+
+										end
+
+										if Thing.Name == "CoinVisual" and Thing.Transparency == 0 and Thing:IsA("BasePart") then
+
+											Found = Thing
+
+											if Coins == false then
+
+												Noclipping:Disconnect()
+												Move:Destroy()
+												Plr.Character.Humanoid.Sit = false
+												return
+
+											end
+
+										end
+
+									end
+
+								end
+
+								Move.Velocity = (Found.Position - Plr.Character.HumanoidRootPart.Position).Unit * 25
 
 								repeat
 
 									wait(0.2)
-									Move.Velocity = (Found.Position - Plr.Character.HumanoidRootPart.Position).Unit * 35
-									
+
+									Move.Velocity = (Found.Position - Plr.Character.HumanoidRootPart.Position).Unit * 25
+
 									if Coins == false then
-										
+
 										Noclipping:Disconnect()
 										Move:Destroy()
 										Plr.Character.Humanoid.Sit = false
 										return
-										
+
 									end
-									
+
 								until Found.Transparency ~= 0 or Found == nil
 
 							end
-							
+
 							Noclipping:Disconnect()
-							Move:Destroy()
+							Move:Remove()
 							Plr.Character.Humanoid.Sit = false
-							
+
 						end)
 
 					else
 
 						Coins = false
-						
+						Plr.Character.Humanoid.Sit = false
+						MovePos:Remove()
+						if Loop then
+
+							Loop:Disconnect()
+
+						end
+
 					end
 
 				end,
 
 			},
-			
+
+			{
+
+				Name = "Coin Reach (LAG)",
+				Type = "Toggle",
+				Desc = "Makes the coin hitbox small and big to make it keep hitting you. Lag expected so its good afking with get coins.",
+				Action = function(On)
+
+					if On then
+
+						CoinReach = true
+
+						spawn(function()
+
+							while CoinReach do
+
+								for _, Thing in game.Workspace:GetDescendants() do
+
+									if Thing.Name == "Coin_Server" then
+
+										if Thing.Size == Vector3.new(2048,2048,2048) then
+
+											Thing.Size = Vector3.new(2,2,1)
+
+										else
+
+											Thing.Size = Vector3.new(2048,2048,2048)
+
+										end
+
+									end
+
+								end
+
+								wait(0.05)
+
+							end
+
+						end)
+
+					else
+
+						CoinReach = false
+						spawn(function()
+
+							for _, Thing in game.Workspace:GetDescendants() do
+
+								if Thing.Name == "Coin_Server" then
+
+									Thing.Size = Vector3.new(2,2,1)							
+
+								end
+
+							end
+
+						end)
+
+					end
+
+				end,
+
+			},
+
+			{
+
+				Type = "Title",
+				Text = "Killing"
+
+			},
+
+			{
+
+				Type = "Split",
+
+			},
+
+			{
+
+				Name = "Murder All",
+				Type = "Button",
+				Desc = "Makes the knife touch everybody then swings. firetouchinterest UNC needed.",
+				Action = function(On)
+
+					if not firetouchinterest then
+
+						ShowPopup("Murder All","You do not have the firetouchinterest UNC function. Please use an executor with it. (Eg: Nova, Arcadia, Wave)","Ok")
+						return
+
+					end
+
+					if not Plr.Character:FindFirstChild("Knife") then
+
+						ShowPopup("Murder All","Please equip your knife.","Ok")
+						return
+
+					end
+					
+					Plr.Character:FindFirstChild("Knife"):Activate()
+
+					for _, Thing in game.Players:GetPlayers() do
+
+						if Thing ~= Plr and Thing.Character:FindFirstChild("HumanoidRootPart") then
+
+							firetouchinterest(Plr.Character:FindFirstChildOfClass("Knife").Handle.TouchInterest,Thing.Character:FindFirstChild("HumanoidRootPart"),1)
+
+						end
+
+					end
+
+				end,
+
+			},
+
 		}
 
 	end,
@@ -2180,6 +2451,7 @@ local Games = {
 					Tool.Activated:Connect(function()
 
 						local Item = game.Players.LocalPlayer:GetMouse().Target
+						local Block = Item
 
 						if Item:HasTag("Disabled") and Item.Parent.Parent.Name == "Items" then
 
@@ -2501,9 +2773,9 @@ local Games = {
 	end,
 
 	["1962086868"] = function ()
-		
+
 		local Hitboxes = Instance.new("Folder",nil)
-		
+
 		Commands = {
 
 			{
@@ -2550,9 +2822,9 @@ local Games = {
 						for _, Thing in Plr.Character:GetChildren() do
 
 							if Thing.Name == "hitbox" then
-								
+
 								Thing.Parent = Hitboxes
-								
+
 							end
 
 						end
@@ -2570,13 +2842,13 @@ local Games = {
 				end,
 
 			},
-			
+
 			{
 
 				Type = "Split",
 
 			},
-			
+
 			{
 
 				Name = "To End",
@@ -2585,13 +2857,13 @@ local Games = {
 				Action = function()
 
 					local Pos = workspace.tower.sections.finish.exit.carpet.Position + Vector3.new(0,5,0)
-					
+
 					game.TweenService:Create(Plr.Character.HumanoidRootPart,TweenInfo.new(0),{CFrame = CFrame.new(Pos)}):Play()
-					
+
 				end,
 
 			},
-			
+
 			{
 
 				Name = "To Beginning",
@@ -2606,13 +2878,13 @@ local Games = {
 				end,
 
 			},
-			
+
 		}
 
 	end,
-	
+
 	["4448566543"] = function ()
-		
+
 		Commands = {
 
 			{
@@ -2639,16 +2911,16 @@ local Games = {
 						Highlight.OutlineColor = Color3.new(1,1,1)
 
 						if Thing.Character:FindFirstChild("Hitbox") then
-							
+
 							if game.Workspace.GameBananas:FindFirstChild(Thing.Name):FindFirstChildOfClass("Model"):FindFirstChild("PlayerHighlightType") then
-								
+
 								game.Workspace.GameBananas:FindFirstChild(Thing.Name):FindFirstChildOfClass("Model"):FindFirstChild("PlayerHighlightType"):Destroy()
-								
+
 							end
-							
+
 							Highlight.Parent = game.Workspace.GameBananas:FindFirstChild(Thing.Name):FindFirstChildOfClass("Model")
 							Highlight.OutlineColor = Color3.new(1,1,0)
-							
+
 						end
 
 					end
@@ -2656,7 +2928,7 @@ local Games = {
 				end,
 
 			},
-			
+
 			{
 
 				Name = "Show Puzzles",
@@ -2681,11 +2953,11 @@ local Games = {
 						Highlight.OutlineColor = Color3.new(0,0.6,1)
 
 					end
-					
+
 					for _, Thing in workspace.GameKeeper.Map.Items:GetChildren() do
 
 						if Thing.Name == "CakePlate" then
-							
+
 							local Highlight = Instance.new("Highlight",Thing)
 
 							Highlight.FillTransparency = 1
@@ -2699,15 +2971,15 @@ local Games = {
 							Highlight.Name = "PuzzleHighlight"
 
 							Highlight.OutlineColor = Color3.new(1,0,1)
-							
+
 						end
 
 					end
-					
+
 				end,
 
 			},
-			
+
 			{
 
 				Name = "Show Other",
@@ -2758,13 +3030,13 @@ local Games = {
 				end,
 
 			},
-			
+
 			{
 
 				Type = "Split",
 
 			},
-			
+
 			{
 
 				Name = "Hide Loading UI",
@@ -2777,11 +3049,11 @@ local Games = {
 				end,
 
 			},
-			
+
 		}
 
 	end,
-	
+
 }
 
 if Games[tostring(ID)] then
@@ -2889,7 +3161,7 @@ else
 			end,
 
 		},
-		
+
 		{
 
 			Name = "Tower of hell",
@@ -2905,30 +3177,10 @@ else
 			end,
 
 		},
-		
+
 	}
 
 end
-
--- Toggle
-
-Toggle.MouseButton1Click:Connect(function()
-
-	if not Open then
-
-		game.TweenService:Create(Icon,TweenInfo.new(0.5),{Rotation = 0}):Play()
-		game.TweenService:Create(Main,TweenInfo.new(0.4),{Position = UDim2.new(0, 0, 0.855, 0)}):Play()
-		Open = true
-
-	else
-
-		game.TweenService:Create(Icon,TweenInfo.new(0.5),{Rotation = 180}):Play()
-		game.TweenService:Create(Main,TweenInfo.new(0.4),{Position = UDim2.new(0,0,0.962,0)}):Play()
-		Open = false
-
-	end
-
-end)
 
 -- Setup
 
@@ -2936,34 +3188,36 @@ print("Loaded " .. #Commands .. " hacks in " .. game.PlaceId .. ".")
 
 for _, Command in Commands do
 
+	if Command.Name then
+
+		Command.Name = " " .. Command.Name
+
+	end
+
 	if Command.Type == "Button" then
 
 		local Clone = Button:Clone()
 
-		local Stroke = Instance.new("UIStroke",Clone)
+		local Round = Instance.new("UICorner",Clone)
 
-		Stroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-
-		Stroke.Color = Color3.new(1,1,1)
-
-		Stroke.Thickness = 3
+		Round.CornerRadius = UDim.new(0.4, 0)
 
 		Clone.Parent = Scroll
 
-		Clone.CommandName.Text = Command.Name
+		Clone.Text = Command.Name
 
 		Clone.MouseEnter:Connect(function()
 
 			Description.Visible = true
 			Desc.Text = Command.Desc
-			game.TweenService:Create(Clone,TweenInfo.new(0.2),{BackgroundColor3 = Color3.new(0.211765, 0.211765, 0.211765)}):Play()
+			game.TweenService:Create(Clone,TweenInfo.new(0.2),{BackgroundColor3 = Color3.fromRGB(150,150,150)}):Play()
 
 		end)
 
 		Clone.MouseLeave:Connect(function()
 
 			Description.Visible = false
-			game.TweenService:Create(Clone,TweenInfo.new(0.2),{BackgroundColor3 = Color3.new(1, 1, 1)}):Play()
+			game.TweenService:Create(Clone,TweenInfo.new(0.2),{BackgroundColor3 = Color3.fromRGB(0,0,0)}):Play()
 
 		end)
 
@@ -3003,15 +3257,7 @@ for _, Command in Commands do
 
 		Clone.Parent = Scroll
 
-		Clone.CommandName.Text = Command.Name
-
-		local Stroke = Instance.new("UIStroke",Clone)
-
-		Stroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-
-		Stroke.Color = Color3.new(1,1,1)
-
-		Stroke.Thickness = 3
+		Clone.Text = Command.Name
 
 		local Options = Command.Options
 		local Pos = 1
@@ -3020,7 +3266,6 @@ for _, Command in Commands do
 
 		Clone.MouseEnter:Connect(function()
 
-			game.TweenService:Create(Clone,TweenInfo.new(0.2),{BackgroundColor3 = Color3.new(0.211765, 0.211765, 0.211765)}):Play()
 			Description.Visible = true
 			Desc.Text = Command.Desc
 
@@ -3028,7 +3273,6 @@ for _, Command in Commands do
 
 		Clone.MouseLeave:Connect(function()
 
-			game.TweenService:Create(Clone,TweenInfo.new(0.2),{BackgroundColor3 = Color3.new(0.329412, 0.329412, 0.329412)}):Play()
 			Description.Visible = false
 
 		end)
@@ -3075,32 +3319,36 @@ for _, Command in Commands do
 
 	if Command.Type == "Toggle" then
 
-		local Clone = ToggleButton:Clone()
+		local Clone = Toggle:Clone()
 
 		local On = false
 
+		local Round = Instance.new("UICorner",Clone)
+
+		Round.CornerRadius = UDim.new(0.4, 0)
+
 		Clone.Parent = Scroll
 
-		local Stroke = Instance.new("UIStroke",Clone)
+		Clone.Text = Command.Name
 
-		Stroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+		local SelectStroke = Instance.new("UIStroke",Clone)
 
-		Stroke.Color = Color3.new(1,1,1)
-
-		Stroke.Thickness = 3
-
-		Clone.CommandName.Text = Command.Name
+		SelectStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+		SelectStroke.Color = Color3.new(1,1,1)
+		SelectStroke.Thickness = 0
 
 		Clone.MouseEnter:Connect(function()
 
 			Description.Visible = true
 			Desc.Text = Command.Desc
+			game.TweenService:Create(Clone,TweenInfo.new(0.2),{BackgroundColor3 = Color3.fromRGB(150,150,150)}):Play()
 
 		end)
 
 		Clone.MouseLeave:Connect(function()
 
 			Description.Visible = false
+			game.TweenService:Create(Clone,TweenInfo.new(0.2),{BackgroundColor3 = Color3.fromRGB(0,0,0)}):Play()
 
 		end)
 
@@ -3112,13 +3360,13 @@ for _, Command in Commands do
 
 			if not On then
 
-				game.TweenService:Create(Clone,TweenInfo.new(0.3,Enum.EasingStyle.Sine,Enum.EasingDirection.Out),{BackgroundTransparency = 1}):Play()
+				game.TweenService:Create(SelectStroke,TweenInfo.new(0.3,Enum.EasingStyle.Sine,Enum.EasingDirection.Out),{Thickness = 0}):Play()
 
 			end
 
 			if On then
 
-				game.TweenService:Create(Clone,TweenInfo.new(0.3,Enum.EasingStyle.Sine,Enum.EasingDirection.Out),{BackgroundTransparency = 0.5}):Play()
+				game.TweenService:Create(SelectStroke,TweenInfo.new(0.3,Enum.EasingStyle.Sine,Enum.EasingDirection.Out),{Thickness = 2}):Play()
 
 			end
 
@@ -3128,9 +3376,19 @@ for _, Command in Commands do
 
 	if Command.Type == "Split" then
 
-		local Clone = Split:Clone()
+		local Clone = CmdSplit:Clone()
 
 		Clone.Parent = Scroll
+
+	end
+
+	if Command.Type == "Title" then
+
+		local Clone = Text:Clone()
+
+		Clone.Parent = Scroll
+
+		Clone.Text = Command.Text
 
 	end
 
@@ -3147,15 +3405,7 @@ for _, Command in Commands do
 
 		local Clone = Metre:Clone()
 		Clone.Parent = Scroll
-		Clone.CommandName.Text = Command.Name
-
-		local Stroke = Instance.new("UIStroke",Clone)
-
-		Stroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-
-		Stroke.Color = Color3.new(1,1,1)
-
-		Stroke.Thickness = 3
+		Clone.Text = Command.Name
 
 		local BarValue = (Value - Command.Min) / (Command.Min - Command.Max)
 
@@ -3250,10 +3500,10 @@ for _, Command in Commands do
 
 end
 
--- Description
+-- Other
 
 game:GetService("RunService").RenderStepped:Connect(function()
 
-	Description.Position = UDim2.new(-0.096,Mouse.X,0.65,0)
+	Description.Position = UDim2.new(-0.0915,Mouse.X,-0.02,Mouse.Y)
 
 end)
