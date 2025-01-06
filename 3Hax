@@ -1230,56 +1230,6 @@ local Games = {
 
 			},
 
-			{
-
-				Type = "Title",
-				Text = "Killing"
-
-			},
-
-			{
-
-				Type = "Split",
-
-			},
-
-			{
-
-				Name = "Murder All",
-				Type = "Button",
-				Desc = "Makes the knife touch everybody then swings. firetouchinterest UNC needed.",
-				Action = function(On)
-
-					if not firetouchinterest then
-
-						ShowPopup("Murder All","You do not have the firetouchinterest UNC function. Please use an executor with it. (Eg: Nova, Arcadia, Wave)","Ok")
-						return
-
-					end
-
-					if not Plr.Character:FindFirstChild("Knife") then
-
-						ShowPopup("Murder All","Please equip your knife.","Ok")
-						return
-
-					end
-					
-					Plr.Character:FindFirstChild("Knife"):Activate()
-
-					for _, Thing in game.Players:GetPlayers() do
-
-						if Thing ~= Plr and Thing.Character:FindFirstChild("HumanoidRootPart") then
-
-							firetouchinterest(Plr.Character:FindFirstChildOfClass("Knife").Handle.TouchInterest,Thing.Character:FindFirstChild("HumanoidRootPart"),1)
-
-						end
-
-					end
-
-				end,
-
-			},
-
 		}
 
 	end,
