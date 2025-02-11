@@ -8,7 +8,6 @@ If your on a game 3Hax dont have then it will show every game you can hack on.
 
 All code is open source meaning you can do whatever you want with the code.
 
-# Warning
 > Some code I make might not be open source since its too valuable to be copied.
 
 Anything you wanna upgrade and tell me to upgrade my discord is epic122122123#0428
