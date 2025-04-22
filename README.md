@@ -6,7 +6,7 @@ Theres no viruses or anything because I dont really know why I would do that in 
 
 If your on a game 3Hax dont have then it will show every game you can hack on.
 
-All code is open source meaning you can do whatever you want with the code.
+Most code is open source meaning you can do whatever you want with the code.
 
 > Some code I make might not be open source since its too valuable to be copied.
 
@@ -20,4 +20,4 @@ loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/coolguyandstuffy
 
 # Credits
 
-If you dont credit me and use something unique I have on my script hub, **I will make it not open source**.
+If you dont credit me and use something unique I have on my script hub, **I will just remove it from you.**.
